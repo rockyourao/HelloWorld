@@ -1,4 +1,4 @@
-# HelloWorld [![Build Status](https://travis-ci.org/elastos/Elastos.ELA.svg?branch=master)](https://travis-ci.org/elastos/Elastos.ELA)
+# HelloWorld [![Build Status](https://travis-ci.org/raozhiming/HelloWorld.svg?branch=master)](https://travis-ci.org/raozhiming/HelloWorld)
 
 
 just for test
