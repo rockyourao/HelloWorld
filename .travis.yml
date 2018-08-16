@@ -1,7 +1,16 @@
 language: c
 
-sudo: false
-script: gcc main.c
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt-get update     ; fi
+  
+matrix:
+  include:
+  - sudo: false
+    script: gcc main.c
+    
+  - os: osx
+    script: gcc main.c
 
 notifications:
   email:
