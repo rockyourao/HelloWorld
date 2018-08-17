@@ -7,7 +7,7 @@ before_install:
 matrix:
   include:
   - sudo: required
-    script: gcc main.c
+    script: gcc main.c && ./a.out
     
   - os: osx
     script: gcc main.c
