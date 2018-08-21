@@ -3,7 +3,19 @@ language: c
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update; fi
-  
+
+env:
+  - FOO=foo
+  - FOO=bar
+
+script: echo $FOO
+
+jobs:
+  include:
+  - stage: deploy
+    script: echo Deploy
+    env: FOO=foo
+
 matrix:
   include:
   - sudo: required
