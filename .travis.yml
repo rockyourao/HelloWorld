@@ -8,14 +8,6 @@ env:
   - FOO=foo
   - FOO=bar
 
-script: echo $FOO
-
-jobs:
-  include:
-  - stage: deploy
-    script: echo Deploy
-    env: FOO=foo
-
 matrix:
   include:
   - sudo: required
