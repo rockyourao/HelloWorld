@@ -16,9 +16,9 @@ matrix:
   - os: osx
     script: gcc main.c
 
-notifications:
-  email:
-    recipients:
-    - raozhiming@msn.com
-    on_success: always
-    on_failure: always
+#notifications:
+#  email:
+#    recipients:
+#    - raozhiming@msn.com
+    #on_success: always
+    #on_failure: always
