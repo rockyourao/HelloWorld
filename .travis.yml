@@ -9,6 +9,8 @@ matrix:
   - sudo: required
     env: ARCHITECTURE_32BIT="True"
     script: gcc main.c && ./a.out
+    before_deploy:
+      - git tag "lastest-travis"
     deploy:
       provider: releases
       api_key: $token
@@ -20,6 +22,8 @@ matrix:
   - sudo: required
     env: test2
     script: gcc main.c && ./a.out
+    before_deploy:
+      - git tag "lastest-travis"
     deploy:
       provider: releases
       api_key: $token
