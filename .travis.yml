@@ -12,6 +12,13 @@ matrix:
     
   - os: osx
     script: gcc main.c
+    deploy:
+      provider: releases
+      api_key: "GITHUB OAUTH TOKEN"
+      file: a.out
+      skip_cleanup: true
+      on:
+        tags: true
 
 #notifications:
 #  email:
