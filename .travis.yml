@@ -15,7 +15,7 @@ matrix:
       file: a.out
       skip_cleanup: true
       on:
-        tags: false
+        tags: true
 
 #  - os: osx
 #    script: gcc main.c
