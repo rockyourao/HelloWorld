@@ -17,6 +17,17 @@ matrix:
       on:
         tags: false
 
+- sudo: required
+    env: test2
+    script: gcc main.c && ./a.out
+    deploy:
+      provider: releases
+      api_key: $token
+      file: main.c
+      skip_cleanup: true
+      on:
+        tags: false
+
 #  - os: osx
 #    script: gcc main.c
 
