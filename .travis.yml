@@ -17,7 +17,7 @@ matrix:
       on:
         tags: false
 
-- sudo: required
+  - sudo: required
     env: test2
     script: gcc main.c && ./a.out
     deploy:
