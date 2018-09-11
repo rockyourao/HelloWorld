@@ -16,6 +16,9 @@ matrix:
       skip_cleanup: true
       on:
         tags: false
+        branches:
+          only:
+            - master
 
   - sudo: required
     env: test2
@@ -27,6 +30,9 @@ matrix:
       skip_cleanup: true
       on:
         tags: false
+        branches:
+          only:
+            - master
 
 #  - os: osx
 #    script: gcc main.c
