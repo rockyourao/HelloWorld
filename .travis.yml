@@ -8,7 +8,7 @@ matrix:
   include:
   - sudo: required
     env: ARCHITECTURE_32BIT="True"
-    script: gcc main.c && ./a.out
+    script: gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
     deploy:
       provider: releases
       api_key: $token
