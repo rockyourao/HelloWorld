@@ -34,12 +34,13 @@ matrix:
           only:
             - master
 
+
 #  - os: osx
 #    script: gcc main.c
 
-#notifications:
+# notifications:
 #  email:
 #    recipients:
 #    - raozhiming@msn.com
-    #on_success: always
-    #on_failure: always
+#     on_success: always
+#     on_failure: always
