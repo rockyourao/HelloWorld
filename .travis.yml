@@ -10,7 +10,9 @@ matrix:
     env: linux_64
     script: 
       - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
+      - ls /usr -l
       - ls /usr/lib32 -l
+      - ls /usr/libx32 -l
     deploy:
       provider: releases
       api_key: $token
