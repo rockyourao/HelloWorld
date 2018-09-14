@@ -8,7 +8,7 @@ matrix:
   include:
   - sudo: required
     language: python
-    python: 3.6
+    python: 2.7.15
     env: linux
     script:
       - python --version
