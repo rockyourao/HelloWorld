@@ -7,17 +7,18 @@ before_install:
 matrix:
   include:
   - sudo: required
-    language: c python
+    language: python
     python: 3.6
     env: linux
     script:
       - python --version
 
-  - language: c python
+  - language: python
     sudo: required
     python: 3.6
     env: python
     script:
+      - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
       - python --version
 
   # - sudo: required
