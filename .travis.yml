@@ -7,8 +7,15 @@ before_install:
 matrix:
   include:
   - sudo: required
-   python: 3.6
+    python: 3.6
     env: linux
+    script:
+      - python --version
+
+  - language: python
+    sudo: required
+    python: 3.6
+    env: python
     script:
       - python --version
 
