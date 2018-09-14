@@ -7,36 +7,42 @@ before_install:
 matrix:
   include:
   - sudo: required
-    env: linux_64
-    script: 
-      - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
-      - ls /usr -l
-      - ls /usr/lib32 -l
-      - ls /usr/libx32 -l
-    deploy:
-      provider: releases
-      api_key: $token
-      file: a.out
-      skip_cleanup: true
-      on:
-        tags: true
-        branches:
-          only:
-            - master
+   python: 3.6
+    env: linux
+    script:
+      - python --version
 
-  - sudo: required
-    env: test2
-    script: gcc main.c && ./a.out
-    deploy:
-      provider: releases
-      api_key: $token
-      file: main.c
-      skip_cleanup: true
-      on:
-        tags: true
-        branches:
-          only:
-            - master
+  # - sudo: required
+  #   env: linux_64
+  #   script:
+  #     - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
+  #     - ls /usr -l
+  #     - ls /usr/lib32 -l
+  #     - ls /usr/libx32 -l
+  #   deploy:
+  #     provider: releases
+  #     api_key: $token
+  #     file: a.out
+  #     skip_cleanup: true
+  #     on:
+  #       tags: true
+  #       branches:
+  #         only:
+  #           - master
+
+  # - sudo: required
+  #   env: test2
+  #   script: gcc main.c && ./a.out
+  #   deploy:
+  #     provider: releases
+  #     api_key: $token
+  #     file: main.c
+  #     skip_cleanup: true
+  #     on:
+  #       tags: true
+  #       branches:
+  #         only:
+  #           - master
 
 
 #  - os: osx
