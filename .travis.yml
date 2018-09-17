@@ -9,22 +9,11 @@ matrix:
   include:
   - sudo: required
     env: linux_${BUILD_VER}
-    script:
-      - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
-      - echo "BUILD_VER " $BUILD_VER
-
   - sudo: required
     env: linux_2_${BUILD_VER}
-    script:
-      - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
-      - echo "BUILD_VER " $BUILD_VER
-
-
-  - sudo: required
-    env: linux_3 BUILD_VER="$BUILD_VER"
-    script:
-      - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
-      - echo "BUILD_VER " $BUILD_VER
+  script:
+    - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
+    - echo "BUILD_VER " $BUILD_VER
 
 # - sudo: required
   #   env: linux_64
