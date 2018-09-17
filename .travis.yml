@@ -8,11 +8,10 @@ before_install:
 matrix:
   include:
   - sudo: required
-    env: linux
+    env: linux_${BUILD_VER}
     script:
       - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
       - echo "BUILD_VER " $BUILD_VER
-  if: $TRAVIS_TAG" = "1"
 
 # - sudo: required
   #   env: linux_64
