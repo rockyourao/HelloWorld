@@ -15,7 +15,7 @@ matrix:
 script:
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
-if: $BUILD_VER = "Release"
+if: BUILD_VER = "Release"
 # - sudo: required
   #   env: linux_64
   #   script:
