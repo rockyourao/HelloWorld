@@ -21,7 +21,7 @@ matrix:
 
 
   - sudo: required
-    env: linux_3 BUILD_VER=${BUILD_VER}
+    env: linux_3 BUILD_VER="$BUILD_VER"
     script:
       - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
       - echo "BUILD_VER " $BUILD_VER
