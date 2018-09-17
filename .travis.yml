@@ -13,7 +13,15 @@ matrix:
       - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
       - echo "BUILD_VER " $BUILD_VER
 
-  # - sudo: required
+  - sudo: required
+    env: linux_tag
+    script:
+      - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
+      - echo "BUILD_VER " $BUILD_VER
+    on:
+      tags: false
+
+# - sudo: required
   #   env: linux_64
   #   script:
   #     - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
