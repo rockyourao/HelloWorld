@@ -8,46 +8,14 @@ before_install:
 matrix:
   include:
     - sudo: required
-      env: BUILD_VER=Debug
+      env: BUILD_TYPE=Debug
     - sudo: required
-      env: BUILD_VER=Release
+      env: BUILD_TYPE=Release
 
 script:
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
-if: env(BUILD_VER) IN (Debug, "Debug")
-# - sudo: required
-  #   env: linux_64
-  #   script:
-  #     - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
-  #     - ls /usr -l
-  #     - ls /usr/lib32 -l
-  #     - ls /usr/libx32 -l
-  #   deploy:
-  #     provider: releases
-  #     api_key: $token
-  #     file: a.out
-  #     skip_cleanup: true
-  #     on:
-  #       tags: true
-  #       branches:
-  #         only:
-  #           - master
-
-  # - sudo: required
-  #   env: test2
-  #   script: gcc main.c && ./a.out
-  #   deploy:
-  #     provider: releases
-  #     api_key: $token
-  #     file: main.c
-  #     skip_cleanup: true
-  #     on:
-  #       tags: true
-  #       branches:
-  #         only:
-  #           - master
-
+if: env(BUILD_TYPE) IN (Debug, "Debug")
 
 #  - os: osx
 #    script: gcc main.c
