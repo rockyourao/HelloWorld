@@ -8,9 +8,9 @@ before_install:
 matrix:
   include:
     - sudo: required
-      env: linux_${BUILD_VER}
+      env: linux_${BUILD_VER} BUILD_VER=Debug
     - sudo: required
-      env: linux_2_${BUILD_VER}
+      env: linux_2_${BUILD_VER} BUILD_VER=Release
 
 script:
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
