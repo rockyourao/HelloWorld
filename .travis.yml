@@ -13,7 +13,7 @@ matrix:
       - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
       - echo "BUILD_VER " $BUILD_VER
   
-  if: $TRAVIS_TAG" != ""
+  if: $TRAVIS_TAG" == ""
     - echo "hello"
 
 # - sudo: required
