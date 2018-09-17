@@ -5,7 +5,7 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install ruby-dev; fi
   - if [[ "$TRAVIS_TAG" != "" ]]; then 
     - export BUILD_VER=Release; 
-    - export TEST=OK
+    - export TEST=OK;
   else 
     - export BUILD_VER=Debug;
   fi
