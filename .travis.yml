@@ -25,6 +25,11 @@ matrix:
       if: tag IS present
 
 script:
+  - if [[ "$BUILD_VER" == "Release" ]]; then 
+      echo "release ++++++++++++";
+    else 
+      echo "debug -----------";
+    fi
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
 
