@@ -19,7 +19,7 @@ matrix:
       - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
       - echo "BUILD_VER " $BUILD_VER
     on:
-      tags: false
+      tags: true
 
 # - sudo: required
   #   env: linux_64
