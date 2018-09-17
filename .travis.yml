@@ -14,7 +14,7 @@ matrix:
       - echo "BUILD_VER " $BUILD_VER
   
   if: $TRAVIS_TAG" != ""
-  - sudo: required
+    sudo: required
     env: linux_tag
     script:
       - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
