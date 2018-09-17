@@ -25,7 +25,7 @@ matrix:
       if: tag IS present
 
 script:
-  - if [[ "$BUILD_VER" == "Release" ]]; then 
+  - if [[ "$BUILD_VER" = "Release" ]]; then 
       echo "release ++++++++++++";
     else 
       echo "debug -----------";
