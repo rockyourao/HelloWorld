@@ -18,12 +18,16 @@ matrix:
   include:
     - sudo: required
       env: BUILD_TYPE=Debug $BUILD_VER
-      script:
+      before_script:
         - echo "script ***************"
+        - cd test
+        - pwd
     - sudo: required
       env: BUILD_TYPE=Release $BUILD_VER
-      script:
+      before_script:
         - echo "script ***************"
+        - cd test
+        - pwd
     - sudo: required
       env: BUILD_TYPE=Release
       if: tag IS present
@@ -34,6 +38,7 @@ script:
     else 
       echo "debug -----------";
     fi
+  - pwd
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
 
