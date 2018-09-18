@@ -49,12 +49,13 @@ script:
   - pwd
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
+  - sudo tar -czf $BUILD_ENV-$(date +'%Y%m%d').tar.gz main.c
 
 deploy:
   provider: releases
   api_key: $GIT_TOKEN
   file_glob: true
-  file: main.c
+  file: $BUILD_ENV*.tar.gz
   skip_cleanup: true
   on:
     tags: false
