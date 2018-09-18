@@ -13,6 +13,7 @@ before_install:
       fi
     else 
       export BUILD_VER=Debug;
+      export BUILD_ENV=test;
     fi
 
 before_script:
