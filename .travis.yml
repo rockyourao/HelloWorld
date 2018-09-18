@@ -16,7 +16,6 @@ before_install:
 
 before_script:
   - echo "script ***************"
-  - cd test
   - pwd
 
 matrix:
@@ -24,6 +23,7 @@ matrix:
     - os: osx
       env: BUILD_ENV=darwin_x64
 
+    - os: osx
       env: BUILD_ENV=darwin_x32
 
     - sudo: required
