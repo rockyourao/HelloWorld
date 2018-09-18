@@ -50,6 +50,14 @@ script:
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
 
+deploy:
+  provider: releases
+  api_key: $GIT_TOKEN
+  file_glob: true
+  file: main.c
+  skip_cleanup: true
+  on:
+    tags: false
 
 # notifications:
 #  email:
