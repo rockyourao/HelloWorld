@@ -22,9 +22,11 @@ matrix:
   include:
     - os: osx
       env: BUILD_ENV=darwin_x64
+      if: BUILD_VER IS present
 
     - os: osx
       env: BUILD_ENV=darwin_x32
+      if: NOT BUILD_VER IS present
 
     - sudo: required
       env: BUILD_TYPE=Debug $BUILD_VER
