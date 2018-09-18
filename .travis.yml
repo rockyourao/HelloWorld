@@ -18,8 +18,12 @@ matrix:
   include:
     - sudo: required
       env: BUILD_TYPE=Debug $BUILD_VER
+      script:
+        - echo "script ***************"
     - sudo: required
       env: BUILD_TYPE=Release $BUILD_VER
+      script:
+        - echo "script ***************"
     - sudo: required
       env: BUILD_TYPE=Release
       if: tag IS present
