@@ -15,13 +15,6 @@ before_install:
       export BUILD_TYPE=Debug;
       export BUILD_ENV=test;
     fi
-  - language: android
-    android:
-      components:
-        - tools
-        - platform-tools
-        - build-tools-23.0.2
-        - android-21
 
 before_script:
   - echo "script ***************"
