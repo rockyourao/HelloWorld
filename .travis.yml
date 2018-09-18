@@ -15,7 +15,7 @@ before_install:
       export BUILD_TYPE=Debug;
       export BUILD_ENV=test;
     fi
-  android:
+  - android:
     components:
       - tools
       - platform-tools
