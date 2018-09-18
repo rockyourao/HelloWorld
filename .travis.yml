@@ -14,20 +14,24 @@ before_install:
       export BUILD_VER=Debug;
     fi
 
+before_script:
+  - echo "script ***************"
+  - cd test
+  - pwd
+
 matrix:
   include:
+    - os: osx
+      env: BUILD_ENV=darwin_x64
+
+      env: BUILD_ENV=darwin_x32
+
     - sudo: required
       env: BUILD_TYPE=Debug $BUILD_VER
-      before_script:
-        - echo "script ***************"
-        - cd test
-        - pwd
+
     - sudo: required
       env: BUILD_TYPE=Release $BUILD_VER
-      before_script:
-        - echo "script ***************"
-        - cd test
-        - pwd
+      
     - sudo: required
       env: BUILD_TYPE=Release
       if: tag IS present
