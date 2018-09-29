@@ -47,6 +47,7 @@ script:
     fi
   - mkdir $BUILD_ENV_$BUILD_TYPE
   - pwd
+  - ls -l
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
   - sudo tar -czf $BUILD_ENV-$(date +'%Y%m%d').tar.gz main.c
