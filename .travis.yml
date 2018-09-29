@@ -31,14 +31,13 @@ matrix:
       if: NOT BUILD_VER IS present
 
     - sudo: required
-      env: BUILD_TYPE=Debug $BUILD_VER
+      env: BUILD_TYPE=Debug BUILD_ENV=linux_x64
 
     - sudo: required
-      env: BUILD_TYPE=Release $BUILD_VER
+      env: BUILD_TYPE=Release BUILD_ENV=linux_x64
       
     - sudo: required
       env: BUILD_TYPE=Release
-      if: tag IS present
 
 script:
   - if [[ "$BUILD_TYPE" == "Release" ]]; then 
@@ -46,6 +45,7 @@ script:
     else 
       echo "debug -----------";
     fi
+  - mkdir $BUILD_ENV_$BUILD_TYPE
   - pwd
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
@@ -58,7 +58,7 @@ deploy:
   file: $BUILD_ENV*.tar.gz
   skip_cleanup: true
   on:
-    tags: false
+    tags: true
 
 # notifications:
 #  email:
