@@ -45,7 +45,7 @@ script:
     else 
       echo "debug -----------";
     fi
-  - mkdir ${BUILD_ENV}_$BUILD_TYPE
+  - mkdir $BUILD_ENV-$BUILD_TYPE
   - pwd
   - ls -l
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
