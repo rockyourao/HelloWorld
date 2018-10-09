@@ -1,0 +1,11 @@
+clone_depth: 5
+
+install:
+  - echo install
+
+build_script:
+  - echo build
+
+test_script:
+  - echo test
+
