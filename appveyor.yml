@@ -3,6 +3,9 @@ clone_depth: 5
 install:
   - echo install
   - pwd
+  - cmake
+  - cl
+  - nmake
 
 build_script:
   - echo build
