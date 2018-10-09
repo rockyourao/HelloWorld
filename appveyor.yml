@@ -2,6 +2,7 @@ clone_depth: 5
 
 install:
   - echo install
+  - pwd
 
 build_script:
   - echo build
