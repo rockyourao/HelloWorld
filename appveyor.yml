@@ -1,15 +1,12 @@
 clone_depth: 5
 
 install:
-  - echo install
   - pwd
-  - dir
-  - dir "C:\Program Files (x86)"
   - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0"
   
 
 build_script:
-  - cmd: cmd /k “C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat”
+  - cmd: cmd /k “C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat”
 
 test_script:
   - echo test
