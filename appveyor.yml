@@ -8,7 +8,7 @@ install:
   - nmake
 
 build_script:
-  - echo build
+  - cmd: cmd /k “C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat”
 
 test_script:
   - echo test
