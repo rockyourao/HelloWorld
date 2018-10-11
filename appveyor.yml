@@ -3,7 +3,8 @@ clone_depth: 5
 install:
   - pwd
   - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7"
-  - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools"
+  - cd "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools"
+  - pwd
   
 
 build_script:
