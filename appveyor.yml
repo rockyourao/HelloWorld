@@ -4,7 +4,8 @@ install:
   - echo install
   - pwd
   - dir
-  - dir c:\
+  - dir "C:\Program Files (x86)"
+  - dir "C:\Program Files (x86)\Microsoft Visual Studio"
   
 
 build_script:
