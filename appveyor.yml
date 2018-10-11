@@ -3,14 +3,14 @@ clone_depth: 5
 install:
   - pwd
   - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7"
-  - cd "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools"
-  - pwd
+
   
 
 build_script:
   - cmd: cmd /k "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
-  - cl
-  - nmake
+  - cmd: cl
+  - cmd: nmake
+  - cmd: exit
 
 test_script:
   - echo test
