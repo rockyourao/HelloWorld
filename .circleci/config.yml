@@ -16,6 +16,7 @@ jobs:
       - run:
           name: Failed
           command: |
+            echo "test"
             echo "Test Failed"
           when: on_fail
 
