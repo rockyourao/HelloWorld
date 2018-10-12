@@ -1,0 +1,26 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: buildpack-deps:trusty
+        environment:
+          BUILD_ENV: linux
+          CMAKE_URL: https://cmake.org/files/v3.11/cmake-3.11.4-Linux-x86_64.tar.gz
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            gcc main.c && ./a.out
+      - run:
+          name: Failed
+          command: |
+            echo "Test Failed"
+          when: on_fail
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
