@@ -7,7 +7,7 @@ install:
   - pwd
   - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7"
   - dir "C:\Program Files (x86)"
-  - where /R . VsDevCmd.bat
+  - where /R "C:\Program Files (x86)" VsDevCmd.bat
   
 
 build_script:
