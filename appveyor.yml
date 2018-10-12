@@ -7,11 +7,10 @@ install:
   - pwd
   - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7"
   - dir "C:\Program Files (x86)"
-  - where /R "C:\Program Files (x86)" VsDevCmd.bat
   
 
 build_script:
-  - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
+  - cmd: call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\Tools\VsDevCmd.bat"
   - cmd: cl
   - cmd: nmake
   - cmd: exit
