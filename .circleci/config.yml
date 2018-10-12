@@ -13,6 +13,7 @@ jobs:
           name: Install dependencies
           command: |
             gcc main.c && ./a.out
+            echo "code:" $?
       - run:
           name: Failed
           command: |
