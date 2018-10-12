@@ -1,9 +1,13 @@
 clone_depth: 5
 
+image:
+  - Visual Studio 2017
+
 install:
   - pwd
   - dir "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7"
-
+  - dir "C:\Program Files (x86)"
+  - where /R . VsDevCmd.bat
   
 
 build_script:
