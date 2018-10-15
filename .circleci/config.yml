@@ -14,7 +14,9 @@ jobs:
           command: |
             gcc main.c && ./a.out
             export EXIT_CODE="run_ok"
-            echo "code:" $EXIT_CODE
+            echo 'export TEST=hello' >>$BASH_ENV
+            echo "code:" ${EXIT_CODE}
+            echo "TEST:" ${TEST}
       - run:
           name: Failed
           command: |
