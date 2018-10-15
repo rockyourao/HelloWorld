@@ -13,7 +13,7 @@ jobs:
           name: Install dependencies
           command: |
             gcc main.c && ./a.out
-            export EXIT_CODE=$?
+            export EXIT_CODE="run_ok"
             echo "code:" $EXIT_CODE
       - run:
           name: Failed
