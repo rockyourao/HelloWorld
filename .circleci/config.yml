@@ -27,6 +27,7 @@ jobs:
               echo "crash"
             fi
             echo "Test Failed"
+            echo bt | gdb ./a.out core
           when: on_fail
 
 workflows:
