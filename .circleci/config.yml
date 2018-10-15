@@ -13,6 +13,7 @@ jobs:
           name: Install dependencies
           command: |
             export EXIT_CODE=run_ok
+            sudo apt-get update
             sudo apt-get install gdb
             gcc main.c && ./a.out
             echo 'export TEST=hello' >>$BASH_ENV
