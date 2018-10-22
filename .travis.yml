@@ -15,7 +15,7 @@ matrix:
 script:
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
-if: tag IS present
+#if: tag IS present
 
 # notifications:
 #  email:
