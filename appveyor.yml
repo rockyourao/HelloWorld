@@ -21,4 +21,6 @@ build_script:
 test_script:
   - echo test
   - pwd
+  on:
+    platform： x64
 
