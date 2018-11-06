@@ -22,8 +22,8 @@ for:
 -
   matrix:
     only:
-      - platform： x64
+      - platform: x64
       
   test_script:
-    - cmd: echo %platform%
+  - echo %platform%
 
