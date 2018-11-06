@@ -18,8 +18,12 @@ build_script:
   - cmd: cd c:\
   - cmd: mkdir test && cd test
 
-test_script:
-  - cmd: echo %platform%
-    on:
-      platform： x64
+for:
+-
+  matrix:
+    only:
+      - platform： x64
+      
+  test_script:
+    - cmd: echo %platform%
 
