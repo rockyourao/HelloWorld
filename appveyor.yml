@@ -22,7 +22,9 @@ for:
 -
   matrix:
     only:
+      - platform: x86
       - platform: x64
+      - platform: Any CPU
       
   test_script:
   - echo %platform%
