@@ -19,7 +19,8 @@ build_script:
   - cmd: mkdir test && cd test
 
 test_script:
-  - cmd: echo test
+  - cmd: echo $platform
     on:
       platform： x64
+      cmd: echo only x64
 
