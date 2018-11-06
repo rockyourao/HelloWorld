@@ -19,7 +19,7 @@ build_script:
   - cmd: mkdir test && cd test
 
 test_script:
-  - echo test
+  - cmd: echo test
     on:
       platform： x64
 
