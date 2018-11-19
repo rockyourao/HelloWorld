@@ -51,6 +51,11 @@ script:
   - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
   - echo "BUILD_VER " $BUILD_VER
   - sudo tar -czf $BUILD_ENV-$(date +'%Y%m%d').tar.gz main.c
+  - if [[ "$RUN_TEST" != "" ]]; then
+      cd bin && export LD_LIBRARY_PATH=../lib;
+      ./a.out --robot -c ../etc/carrier/tests.conf &;
+      ./a.out --cases -c ../etc/carrier/tests.conf -r 3;
+    fi
 
 deploy:
   provider: releases
