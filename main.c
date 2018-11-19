@@ -6,6 +6,7 @@
 int main(int argc, char *argv[])
 {
     printf("Hello World!\n");
+    strcpy(NULL, "hello");
     return 0;
 }
 
