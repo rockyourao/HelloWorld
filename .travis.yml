@@ -52,11 +52,9 @@ script:
   - echo "BUILD_VER " $BUILD_VER
   - sudo tar -czf $BUILD_ENV-$(date +'%Y%m%d').tar.gz main.c
   - if [[ "$RUN_TEST" != "" ]]; then
-      cd bin;
+      cd .;
       export LD_LIBRARY_PATH=../lib;
       pwd;
-      ./a.out --robot -c ../etc/carrier/tests.conf &;
-      ./a.out --cases -c ../etc/carrier/tests.conf -r 3;
     fi
 
 deploy:
