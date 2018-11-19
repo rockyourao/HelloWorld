@@ -37,7 +37,7 @@ matrix:
       env: BUILD_TYPE=Release BUILD_ENV=linux_x64
       
     - sudo: required
-      env: BUILD_TYPE=Release
+      env: BUILD_TYPE=Release RUN_TEST=ON
 
 script:
   - if [[ "$BUILD_TYPE" == "Release" ]]; then 
@@ -55,6 +55,7 @@ script:
       cd .;
       export LD_LIBRARY_PATH=../lib;
       pwd;
+      ./a.out --cases -c ../etc/carrier/tests.conf -r 3;
     fi
 
 deploy:
