@@ -33,7 +33,8 @@ matrix:
       env: BUILD_TYPE=Release RUN_TEST=ON
 
 script:
-  - gcc main.c && ./a.out
+  - gcc main.c
+  - ./a.out
   - ls -l
   - if [[ -f core* ]]; then
       echo "crash";
