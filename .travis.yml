@@ -26,13 +26,6 @@ matrix:
       env: BUILD_ENV=darwin_x64
       if: BUILD_VER IS present
 
-    - os: osx
-      env: BUILD_ENV=darwin_x32
-      if: NOT BUILD_VER IS present
-
-    - sudo: required
-      env: BUILD_TYPE=Debug BUILD_ENV=linux_x64
-
     - sudo: required
       env: BUILD_TYPE=Release BUILD_ENV=linux_x64
       
@@ -40,19 +33,12 @@ matrix:
       env: BUILD_TYPE=Release RUN_TEST=ON
 
 script:
-  - if [[ "$BUILD_TYPE" == "Release" ]]; then 
-      echo "release ++++++++++++";
-    else 
-      echo "debug -----------";
-    fi
-  - mkdir $BUILD_ENV-$BUILD_TYPE
-  - pwd
-  - ls -l
-  - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
-  - echo "BUILD_VER " $BUILD_VER
-  - sudo tar -czf $BUILD_ENV-$(date +'%Y%m%d').tar.gz main.c
-  - if [[ "$RUN_TEST" != "" ]]; then
-      ./a.out & ;
+  - gcc main.c && ./a.out
+  - if [[ -f core* ]]; then
+      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        sudo apt-get install gdb;
+      fi
+      echo bt | gdb ./a.out core*;
     fi
 
 deploy:
