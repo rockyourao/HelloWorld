@@ -43,7 +43,7 @@ script:
         sudo apt-get install gdb;
       else
         brew install gdb
-      fi
+      fi;
       echo "crash";
       echo bt | gdb ./a.out core*;
     fi
