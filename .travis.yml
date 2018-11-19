@@ -35,9 +35,6 @@ matrix:
 script:
   - gcc main.c && ./a.out
   - if [[ -f core* ]]; then
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        sudo apt-get install gdb;
-      fi
       echo bt | gdb ./a.out core*;
     fi
 
