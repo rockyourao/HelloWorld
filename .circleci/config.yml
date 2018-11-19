@@ -12,24 +12,36 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            export EXIT_CODE=run_ok
-            sudo apt-get update
-            echo yes | sudo apt-get install gdb
             gcc main.c && ./a.out
-            echo 'export TEST=hello' >>$BASH_ENV
-            echo "code:" ${EXIT_CODE}
-            echo "TEST:" ${TEST}
       - run:
           name: Failed
           command: |
-            echo "code:" $?
-            echo "on_fail" ${on_fail}
-            echo "Fail: exit_code:" $EXIT_CODE
-            if [ "${EXIT_CODE}" == "" ]; then
-              echo "crash"
+            if [ -f core* ]; then
+              echo "--crash--"
+              sudo apt-get update
+              echo yes | sudo apt-get install gdb
+              echo bt | gdb ./elatests core*
             fi
-            echo "Test Failed"
-            echo bt | gdb ./a.out core
+          when: on_fail
+
+  mac_build:
+    macos:
+      xcode: "10.0.0"
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            gcc main.c && ./a.out
+      - run:
+          name: Failed
+          command: |
+            if [ -f core* ]; then
+              echo "--crash--"
+              sudo apt-get update
+              echo yes | sudo apt-get install gdb
+              echo bt | gdb ./elatests core*
+            fi
           when: on_fail
 
 workflows:
@@ -37,3 +49,4 @@ workflows:
   build_and_test:
     jobs:
       - build
+      - mac_build
