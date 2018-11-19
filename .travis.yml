@@ -34,7 +34,9 @@ matrix:
 
 script:
   - gcc main.c && ./a.out
+  - ls -l
   - if [[ -f core* ]]; then
+      echo "crash";
       echo bt | gdb ./a.out core*;
     fi
 
