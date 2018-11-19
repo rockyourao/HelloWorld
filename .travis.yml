@@ -55,6 +55,7 @@ script:
       cd .;
       export LD_LIBRARY_PATH=../lib;
       pwd;
+      ./a.out --robot -c ../etc/carrier/tests.conf & ;
       ./a.out --cases -c ../etc/carrier/tests.conf -r 3;
     fi
 
