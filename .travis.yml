@@ -48,7 +48,7 @@ script:
       echo "crash";
       echo bt | gdb ./a.out core*;
     else
-      lldb -c /cores/core;
+      echo bt | lldb -c /cores/core;
     fi;
 
 after_success:
