@@ -43,14 +43,14 @@ script:
   - if [[ "$TRAVIS_OS_NAME" != "" ]]; then
       pwd;
       ./a.out;
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        sudo apt-get install gdb;
-      else
-        brew install gdb;
-      fi;
+    fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      sudo apt-get install gdb;
       echo "crash";
       echo bt | gdb ./a.out core*;
-    fi
+    else
+      brew install gdb;
+    fi;
 
 after_success:
   - echo "after_success"
