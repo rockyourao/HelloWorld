@@ -43,7 +43,6 @@ script:
       fi;
       echo "crash";
       echo bt | gdb ./a.out core*;
-      return 1;
     fi
 
 deploy:
