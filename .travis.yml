@@ -16,6 +16,7 @@ before_install:
       ulimit -c unlimited;
       ulimit -c;
       sudo sysctl kern.corefile=/cores/core;
+      easy_install six;
     fi
 
 before_script:
