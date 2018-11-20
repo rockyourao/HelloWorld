@@ -10,10 +10,12 @@ before_install:
       export TEST=OK;
       echo  "BUILD_TYPE" $BUILD_TYPE;
       if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        sudo apt-get install ruby-dev; 
+        sudo apt-get install ruby-dev;
+        ulimit -c;
       else
         ulimit -c unlimited;
         ulimit -c;
+        sysctl kern.corefile=/cores/core
       fi
     else 
       export BUILD_TYPE=Debug;
@@ -27,6 +29,7 @@ before_script:
 matrix:
   include:
     - os: osx
+      sudo: required
       env: BUILD_ENV=darwin_x64
       if: BUILD_VER IS present
 
@@ -49,8 +52,7 @@ script:
       echo "crash";
       echo bt | gdb ./a.out core*;
     else
-      brew install gdb;
-      gdb ./a.out core*;
+      lldb -c /cores/core
     fi;
 
 after_success:
