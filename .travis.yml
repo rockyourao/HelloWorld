@@ -46,7 +46,7 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       sudo apt-get install gdb;
       echo "crash";
-      echo bt | gdb ./a.out core*;
+      echo bt | gdb ./a.out core;
     else
       echo bt | lldb -c /cores/core;
     fi;
