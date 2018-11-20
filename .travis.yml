@@ -50,7 +50,8 @@ script:
       echo bt | gdb ./a.out core;
     else
       echo bt | lldb -c /cores/core;
-    fi;
+    fi
+  - echo bt | gdb ./a.out core
 
 after_success:
   - echo "after_success"
