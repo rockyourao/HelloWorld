@@ -5,21 +5,16 @@ stages:
     if: env(RUN_TEST) IS present
 
 before_install:
-  - if [[ "$BUILD_ENV" != "" ]]; then
-      export BUILD_TYPE=Release; 
-      export TEST=OK;
-      echo  "BUILD_TYPE" $BUILD_TYPE;
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        sudo apt-get install ruby-dev;
-        ulimit -c;
-      else
-        ulimit -c unlimited;
-        ulimit -c;
-        sudo sysctl kern.corefile=/cores/core;
-      fi
-    else 
-      export BUILD_TYPE=Debug;
-      export BUILD_ENV=test;
+  - export BUILD_TYPE=Release
+  - export TEST=OK
+  - echo  "BUILD_TYPE" $BUILD_TYPE;
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+      sudo apt-get install ruby-dev;
+      ulimit -c;
+    else
+      ulimit -c unlimited;
+      ulimit -c;
+      sudo sysctl kern.corefile=/cores/core;
     fi
 
 before_script:
