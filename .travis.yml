@@ -25,7 +25,7 @@ matrix:
   include:
     - os: osx
       sudo: required
-      env: BUILD_ENV=darwin_x64
+      env: BUILD_ENV=darwin_x64 RUN_TEST=ON
       if: BUILD_VER IS present
 
     - sudo: required
