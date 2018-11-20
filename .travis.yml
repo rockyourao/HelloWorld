@@ -32,8 +32,6 @@ matrix:
 script:
   - gcc main.c
   - ./a.out
-    if: env(RUN_TEST) IS present
- 
   - ls -l
   #- if [[ -f core* ]]; then
   - if [[ "$TRAVIS_OS_NAME" != "" ]]; then
@@ -45,6 +43,7 @@ script:
       fi;
       echo "crash";
       echo bt | gdb ./a.out core*;
+      return 1;
     fi
 
 deploy:
