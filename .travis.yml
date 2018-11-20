@@ -1,5 +1,9 @@
 language: c
 
+stages:
+  - name: after_success
+    if: env(RUN_TEST) IS present
+
 before_install:
   - if [[ "$BUILD_ENV" != "" ]]; then
       export BUILD_TYPE=Release; 
