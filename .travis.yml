@@ -51,7 +51,7 @@ script:
 after_success:
   - echo "after_success"
   - ./a.out
-  if: env(RUN_TEST) IS present
+
   
 deploy:
   provider: releases
