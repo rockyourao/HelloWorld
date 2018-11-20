@@ -40,7 +40,7 @@ script:
   - gcc main.c
   - ls -l
   #- if [[ -f core* ]]; then
-  - if [[ "$TRAVIS_OS_NAME" != "" ]]; then
+  - if [[ "$RUN_TEST" != "" ]]; then
       pwd;
       ./a.out;
     fi
