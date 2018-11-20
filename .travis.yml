@@ -15,7 +15,7 @@ before_install:
       else
         ulimit -c unlimited;
         ulimit -c;
-        sysctl kern.corefile=/cores/core
+        sysctl kern.corefile=/cores/core;
       fi
     else 
       export BUILD_TYPE=Debug;
