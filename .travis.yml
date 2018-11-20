@@ -7,6 +7,9 @@ before_install:
       echo  "BUILD_TYPE" $BUILD_TYPE;
       if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         sudo apt-get install ruby-dev; 
+      else
+        ulimit -c unlimited
+        ulimit -c
       fi
     else 
       export BUILD_TYPE=Debug;
