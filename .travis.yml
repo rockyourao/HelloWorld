@@ -34,8 +34,6 @@ script:
   - ./a.out
     if: env(RUN_TEST) IS present
  
-  - if: env(RUN_TEST) IS present
-      echo "test"
   - ls -l
   #- if [[ -f core* ]]; then
   - if [[ "$TRAVIS_OS_NAME" != "" ]]; then
