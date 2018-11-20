@@ -1,9 +1,6 @@
 language: c
 
 before_install:
-  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
-  #- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install ruby-dev; fi
-  #- if [[ "$TRAVIS_TAG" == "" ]]; then
   - if [[ "$BUILD_ENV" != "" ]]; then
       export BUILD_TYPE=Release; 
       export TEST=OK;
@@ -35,6 +32,10 @@ matrix:
 script:
   - gcc main.c
   - ./a.out
+    if: env(RUN_TEST) IS present
+ 
+  - if: env(RUN_TEST) IS present
+      echo "test"
   - ls -l
   #- if [[ -f core* ]]; then
   - if [[ "$TRAVIS_OS_NAME" != "" ]]; then
