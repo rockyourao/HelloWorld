@@ -31,11 +31,11 @@ matrix:
 
 script:
   - gcc main.c
-  - ./a.out
   - ls -l
   #- if [[ -f core* ]]; then
   - if [[ "$TRAVIS_OS_NAME" != "" ]]; then
       pwd;
+      ./a.out;
       if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         sudo apt-get install gdb;
       else
