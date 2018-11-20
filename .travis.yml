@@ -15,7 +15,7 @@ before_install:
       else
         ulimit -c unlimited;
         ulimit -c;
-        sysctl kern.corefile=/cores/core;
+        sudo sysctl kern.corefile=/cores/core;
       fi
     else 
       export BUILD_TYPE=Debug;
@@ -52,7 +52,7 @@ script:
       echo "crash";
       echo bt | gdb ./a.out core*;
     else
-      lldb -c /cores/core
+      lldb -c /cores/core;
     fi;
 
 after_success:
