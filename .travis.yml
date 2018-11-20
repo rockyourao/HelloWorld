@@ -27,7 +27,7 @@ before_script:
 matrix:
   include:
     - os: osx
-      env: BUILD_ENV=darwin_x64 RUN_TEST=ON
+      env: BUILD_ENV=darwin_x64
       if: BUILD_VER IS present
 
     - sudo: required
