@@ -23,11 +23,11 @@ before_script:
 matrix:
   include:
     - os: osx
-      env: BUILD_ENV=darwin_x64
+      env: BUILD_ENV=darwin_x64 RUN_TEST=ON
       if: BUILD_VER IS present
 
     - sudo: required
-      env: BUILD_TYPE=Release BUILD_ENV=linux_x64
+      env: BUILD_TYPE=Release BUILD_ENV=linux_x64 RUN_TEST=ON
       
     - sudo: required
       env: BUILD_TYPE=Release RUN_TEST=ON
@@ -48,6 +48,12 @@ script:
       echo bt | gdb ./a.out core*;
     fi
 
+after_success:
+  - echo "after_success"
+  - ./a.out
+  on:
+    env(RUN_TEST): on
+  
 deploy:
   provider: releases
   api_key: $GIT_TOKEN
