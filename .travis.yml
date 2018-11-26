@@ -1,69 +1,42 @@
-language: c
-
-before_install:
-  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
-  #- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install ruby-dev; fi
-  #- if [[ "$TRAVIS_TAG" == "" ]]; then
-  - if [[ "$BUILD_ENV" != "" ]]; then
-      export BUILD_TYPE=Release; 
-      export TEST=OK;
-      echo  "BUILD_TYPE" $BUILD_TYPE;
-      if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        sudo apt-get install ruby-dev; 
-      fi
-    else 
-      export BUILD_TYPE=Debug;
-      export BUILD_ENV=test;
-    fi
-
-before_script:
-  - echo "script ***************"
-  - pwd
+language: android
+sudo: required
 
 matrix:
   include:
-    - os: osx
-      env: BUILD_ENV=darwin_x64
-      if: BUILD_VER IS present
+    - language: android
+      install: true
+      install:
+        - echo y | android update sdk -u -a -t tools
+        - echo y | android update sdk -u -a -t platform-tools
+        - echo y | android update sdk -u -a -t build-tools-25.0.2
+        - echo y | android update sdk -u -a -t android-25
+        - echo y | android update sdk -u -a -t extra-google-m2repository
+        - echo y | android update sdk -u -a -t extra-android-m2repository
+      # os: linux
+      # jdk: oraclejdk8
+      android:
+        components:
+          - extra-android-support
+          - sys-img-armeabi-v7a-android-24
+      before_install:
+        # - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
+        # - nvm install 8
+        # - node --version
+        # - npm --version
+        # - npm install -g appium
+        - echo y | android update sdk -a --no-ui --filter android-24
+        - echo y | android update sdk -a --no-ui --filter sys-img-armeabi-v7a-android-24
+        - android list targets | grep -E '^id:' | awk -F '"' '{$1=""; print $2}' # list all targets
+        - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+        - emulator -avd test -no-skin -no-window &
+        - android-wait-for-emulator
+        # - adb shell input keyevent 82 &
+        # - adb wait-for-device get-serialno
+        # - sleep 100
+        # - chmod +x gradlew
+        # - ./gradlew --version
+        # - echo y |adb devices
 
-    - os: osx
-      env: BUILD_ENV=darwin_x32
-      if: NOT BUILD_VER IS present
-
-    - sudo: required
-      env: BUILD_TYPE=Debug BUILD_ENV=linux_x64
-
-    - sudo: required
-      env: BUILD_TYPE=Release BUILD_ENV=linux_x64
-      
-    - sudo: required
-      env: BUILD_TYPE=Release
-
-script:
-  - if [[ "$BUILD_TYPE" == "Release" ]]; then 
-      echo "release ++++++++++++";
-    else 
-      echo "debug -----------";
-    fi
-  - mkdir $BUILD_ENV-$BUILD_TYPE
-  - pwd
-  - ls -l
-  - gcc main.c && ./a.out && echo "TRAVIS_TAG" $TRAVIS_TAG
-  - echo "BUILD_VER " $BUILD_VER
-  - sudo tar -czf $BUILD_ENV-$(date +'%Y%m%d').tar.gz main.c
-
-deploy:
-  provider: releases
-  api_key: $GIT_TOKEN
-  file_glob: true
-  file: $BUILD_ENV*.tar.gz
-  skip_cleanup: true
-  on:
-    tags: true
-
-# notifications:
-#  email:
-#    recipients:
-#    - raozhiming@msn.com
-#     on_success: always
-#     on_failure: always
+      script:
+        - echo y |adb devices
+        # - ./gradlew clean build uiAutomationTest -x test -x signArchives
