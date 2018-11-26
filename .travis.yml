@@ -16,7 +16,6 @@ matrix:
       # jdk: oraclejdk8
       android:
         components:
-          - extra-android-support
           - sys-img-x86_64-android-26
       before_install:
         # - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
