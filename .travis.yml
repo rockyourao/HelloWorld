@@ -22,7 +22,7 @@ before_install:
 before_script:
   - echo "script ***************"
   - pwd
-  - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk  -F"[: /t]" '{ print $2}'`
+  - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk  -F"[:]" '{ print $2}'`
   - echo $HOST_IP
 
 matrix:
