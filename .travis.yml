@@ -16,6 +16,8 @@ matrix:
           - android-23
           - sys-img-armeabi-v7a-google_apis-23
       before_install:
+        - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk '{ print $2}'`:5
+        - echo $HOST_IP
         - android list targets
         - echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
         - emulator -avd test -no-skin -no-window &
