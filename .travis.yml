@@ -17,7 +17,7 @@ matrix:
           - sys-img-armeabi-v7a-google_apis-23
       before_install:
         - android list targets
-        - echo no | echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
+        - echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
         - emulator -avd test -no-skin -no-window &
         - android-wait-for-emulator
 
