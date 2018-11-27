@@ -52,6 +52,7 @@ script:
       echo bt | lldb -c /cores/core;
     fi
   - echo bt | gdb ./a.out core
+  - return 1
 
 after_success:
   - echo "after_success"
