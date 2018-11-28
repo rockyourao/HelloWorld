@@ -31,7 +31,7 @@ matrix:
            echo $ret;
            if [[ "$ret" != "" ]]; then
              return 0;
-           fi
+           fi;
            x=$(( $x + 1 ));
           done
 
