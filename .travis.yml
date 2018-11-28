@@ -24,6 +24,11 @@ before_script:
   - pwd
   - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk  -F"[:]" '{ print $2}'`
   - echo $HOST_IP
+  - x=1
+  - while [ $x -le 5 ] do
+      echo "Welcome $x times";
+      x=$(( $x + 1 ));
+    done
 
 matrix:
   include:
