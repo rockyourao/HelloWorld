@@ -22,6 +22,17 @@ matrix:
         - echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
         - emulator -avd test -no-skin -no-window &
         - android-wait-for-emulator
+        - x=1
+        - while [[ $x -le 3 ]]; do
+           echo "pm list";
+           ret=`adb shell pm list packages -e | grep elastos`;
+           echo $ret;
+           ret=`adb shell pm list packages -e | grep android`;
+           echo $ret;
+           ret = adb shell pm list packages -e | grep elastos;
+           echo $ret;
+           x=$(( $x + 1 ));
+          done
 
       script:
         - echo y |adb devices
