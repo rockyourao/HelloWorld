@@ -29,7 +29,7 @@ matrix:
            echo $ret;
            ret=`adb shell pm list packages -e | grep android`;
            echo $ret;
-           ret = adb shell pm list packages -e | grep elastos;
+           ret=adb shell pm list packages -e | grep elastos;
            echo $ret;
            x=$(( $x + 1 ));
           done
