@@ -42,6 +42,8 @@ matrix:
       
     - sudo: required
       env: BUILD_TYPE=Release RUN_TEST=ON
+      
+    - os: windows
 
 script:
   - gcc main.c
@@ -57,7 +59,6 @@ script:
       echo bt | gdb ./a.out core;
     else
       echo bt | lldb -c /cores/core;
-    fi
   - echo bt | gdb ./a.out core
   - return 1
 
