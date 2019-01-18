@@ -4,7 +4,7 @@ sudo: required
 matrix:
   include:
     - language: android
-      env: ANDROID_API_LEVEL=23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+      env: API_LEVEL=23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
       install: echo "install"
       # os: linux
       # jdk: oraclejdk8
@@ -15,26 +15,38 @@ matrix:
           - build-tools-28.0.3
           - android-23
           - sys-img-armeabi-v7a-google_apis-23
-      before_install:
-        - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk '{ print $2}'`:5
-        - echo $HOST_IP
-        - android list targets
-        - echo no | android create avd --force -n test -t "android-23" --abi $ANDROID_ABI --tag $ANDROID_TAG
-        - emulator -avd test -no-skin -no-window &
-        - android-wait-for-emulator
-        - adb shell ping -c 3 -w 100 www.baidu.com
-        - x=1
-        - while [[ $x -le 3 ]]; do
-           echo "pm list";
-           ret=`adb shell pm list packages -e | grep elastos`;
-           echo $ret;
-           ret=`adb shell pm list packages -e | grep android`;
-           echo $ret;
-           if [[ "$ret" != "" ]]; then
-             return 0;
-           fi;
-           x=$(( $x + 1 ));
-          done
 
-      script:
-        - echo y |adb devices
+    - language: android
+      env: ANDROID_ABI=armeabi-v8a API_LEVEL=android-27
+      install: echo "install"
+      android:
+        components:
+          components:
+          - tools
+          - platform-tools
+          - build-tools-28.0.3
+          - android-27
+          - sys-img-arm64-v8a-android-27
+
+before_install:
+  - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk '{ print $2}'`:5
+  - echo $HOST_IP
+  - android list targets
+  - echo no | android create avd --force -n test -t $API_LEVEL --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-window &
+  - android-wait-for-emulator
+  - x=1
+  - while [[ $x -le 3 ]]; do
+     echo "pm list";
+     ret=`adb shell pm list packages -e | grep elastos`;
+     echo $ret;
+     ret=`adb shell pm list packages -e | grep android`;
+     echo $ret;
+     if [[ "$ret" != "" ]]; then
+       return 0;
+     fi;
+     x=$(( $x + 1 ));
+    done
+
+script:
+  - echo y | adb devices
