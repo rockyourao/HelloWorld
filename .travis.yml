@@ -41,6 +41,7 @@ before_install:
   - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk '{ print $2}'`:5
   - echo $HOST_IP
   - android list targets
+  # - echo no | android create avd --force -n test -t $API_LEVEL --abi $ANDROID_ABI
   - echo no | android create avd --force -n test -t $API_LEVEL --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
