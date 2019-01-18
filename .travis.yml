@@ -21,7 +21,6 @@ matrix:
       install: echo "install"
       android:
         components:
-          components:
           - tools
           - platform-tools
           - build-tools-28.0.3
