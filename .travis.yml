@@ -38,6 +38,7 @@ before_install:
   - x=1
   - while [[ $x -le 3 ]]; do
      echo "pm list";
+     sleep 2;
      ret=`adb shell pm list packages -e | grep elastos`;
      echo $ret;
      ret=`adb shell pm list packages -e | grep android`;
