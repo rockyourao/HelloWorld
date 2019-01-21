@@ -50,7 +50,7 @@ before_install:
   - echo no | android create avd --force -n test -t $API_LEVEL
   - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
-  - adb install app-debug.apk
+  - adb install -t app-debug.apk
   - adb shell logcat -c
   # - adb shell logcat -v time chromium:* *:s > logcat.log &
   - adb shell logcat -v time &
