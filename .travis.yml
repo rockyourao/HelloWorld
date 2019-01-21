@@ -7,7 +7,7 @@ matrix:
       env: API_LEVEL=android-23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
       install: echo "install"
       before_install:
-        - echo no | android create avd --force -n test -k "system-images;android-23;google_apis;armeabi-v7a"
+        - echo no | android create avd --force -n test -t $API_LEVEL --abi google_apis/armeabi-v7a
         - emulator -avd test -no-skin -no-window &
         - android-wait-for-emulator
       # os: linux
@@ -47,7 +47,7 @@ before_install:
   - android list
   - android list targets
   # - echo no | android create avd --force -n test -t $API_LEVEL --abi $ANDROID_ABI
-  - echo no | android create avd --force -n test -t $API_LEVEL
+  - echo no | android create avd --force -n test -t $API_LEVEL --abi $ANDROID_ABI
   - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
   - adb install -t app-debug.apk
