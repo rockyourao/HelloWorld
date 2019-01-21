@@ -4,7 +4,7 @@ sudo: required
 matrix:
   include:
     - language: android
-      env: API_LEVEL=23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
+      env: API_LEVEL=android-23 ANDROID_ABI=armeabi-v7a ANDROID_TAG=google_apis
       install: echo "install"
       # os: linux
       # jdk: oraclejdk8
