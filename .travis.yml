@@ -46,9 +46,11 @@ before_install:
   - echo no | android create avd --force -n test -t $API_LEVEL
   - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
+  - adb install app-debug.apk
   - adb shell logcat -c
   # - adb shell logcat -v time chromium:* *:s > logcat.log &
   - adb shell logcat -v time &
+  - adb shell am start org.elastos.trinity.runtime/.MainActivity
   - sleep 15
   - x=1
   - while [[ $x -le 3 ]]; do
