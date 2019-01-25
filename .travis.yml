@@ -95,7 +95,7 @@ before_script:
   - adb shell input keyevent 1 &
 
 script:
-  - adb install app-debug.apk
+  - adb install -t app-debug.apk
   - adb shell logcat -c
   # - adb shell logcat -v time chromium:* *:s > logcat.log &
   - adb shell logcat -v time &
