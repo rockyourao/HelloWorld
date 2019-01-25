@@ -1,90 +1,45 @@
 language: android
-sudo: required
+jdk: oraclejdk8
 
-matrix:
-  include:
-    - language: android
-      env: API_LEVEL=android-23 ANDROID_ABI=google_apis/armeabi-v7a
-      # os: linux
-      # jdk: oraclejdk8
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-28.0.3
-          - android-23
-          - sys-img-armeabi-v7a-google_apis-23
+android:
+  components:
+    - tools
+    - platform-tools
+    - tools
+    - android-21
+    - android-27
+    - build-tools-27.0.3
+    - android-27
+    - addon-google_apis-google-27
+    - extra-google-google_play_services
+    - extra-android-support
+    - extra-google-m2repository
+    - extra-android-m2repository
+    - sys-img-armeabi-v7a-android-27
+    - sys-img-armeabi-v7a-android-21
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
 
-    - language: android
-      env: ANDROID_ABI=armeabi-v8a API_LEVEL=android-27
-      install: echo "install"
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-28.0.3
-          - android-27
-          - sys-img-arm64-v8a-android-27
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 
-    - language: android
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-26.0.1
-          - android-24
-          - sys-img-arm64-v8a-android-24
-      env: ANDROID_ABI=arm64-v8a  TEST1 API_LEVEL=android-24
-      
-    - language: android
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-27.0.3
-          - android-27
-          - addon-google_apis-google-27
-          - extra-google-google_play_services
-          - extra-android-support
-          - extra-google-m2repository
-          - extra-android-m2repository
-          - sys-img-armeabi-v7a-android-27
-        licenses:
-          - 'android-sdk-preview-license-52d11cd2'
-          - 'android-sdk-license-.+'
-          - 'google-gdk-license-.+'
-      env: ANDROID_ABI=armeabi-v7a API_LEVEL=android-27
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
 
 before_install:
   - echo y | android update sdk --no-ui --all --filter sys-img-armeabi-v7a-android-27,sys-img-x86_64-android-27,build-tools-27.0.3
   - yes | sdkmanager "platforms;android-27"
-  - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk '{ print $2}'`:5
-  - echo $HOST_IP
-  - android list
-  - android list targets
-  # - echo no | android create avd --force -n test -t $API_LEVEL --abi $ANDROID_ABI
-  - echo no | android create avd --force -n test -t $API_LEVEL --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-window &
-  - android-wait-for-emulator
-  - adb install -t app-debug.apk
-  - adb shell logcat -c
-  # - adb shell logcat -v time chromium:* *:s > logcat.log &
-  - adb shell logcat -v time &
-  - adb shell am start org.elastos.trinity.runtime/.MainActivity
-  - sleep 15
-  - x=1
-  - while [[ $x -le 3 ]]; do
-      echo "pm list";
-      sleep 2;
-      ret=`adb shell pm list packages -e | grep elastos`;
-      echo $ret;
-      ret=`adb shell pm list packages -e | grep android`;
-      echo $ret;
-      if [[ "$ret" != "" ]]; then
-        return 0;
-      fi;
-      x=$(( $x + 1 ));
-    done
 
-script:
-  - echo y | adb devices
+before_script:
+  - android list targets
+  - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
+  
