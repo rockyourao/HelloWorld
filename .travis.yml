@@ -86,6 +86,8 @@ before_script:
 
 script:
   - ls -l
+  - adb devices
+  - adb shell ps -e
   - adb install -t app-debug.apk
   - adb shell logcat -c
   # - adb shell logcat -v time chromium:* *:s > logcat.log &
