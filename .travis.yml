@@ -32,6 +32,10 @@ matrix:
       env: EMULATOR_API_LEVEL=22  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-22
     - name: "Android 25"
       env: EMULATOR_API_LEVEL=25  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-25
+    - name: "Android 25 google"
+      env: EMULATOR_API_LEVEL=25  ANDROID_EMULATOR_IMAGE=system-images;android-25;google_apis;armeabi-v7a
+    - name: "Android 24 google"
+      env: EMULATOR_API_LEVEL=25  ANDROID_EMULATOR_IMAGE=system-images;android-24;google_apis;armeabi-v7a
 
 allow_failures: # these stall often or have some other flaky problems
   - env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
@@ -40,7 +44,7 @@ allow_failures: # these stall often or have some other flaky problems
 android:
   components:
   # Base components
-      - tools # to get the new `repository-11.xml`
+      # - tools # to get the new `repository-11.xml`
       - tools # https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
       - platform-tools
       - build-tools-$ANDROID_BUILD_TOOLS_VERSION # get the build tools version to build the project
@@ -54,6 +58,7 @@ android:
       # - extra-google-google_play_services
   # Specify the needed emulator
       - $ANDROID_EMULATOR_IMAGE
+      # - "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # licenses:
   #   - 'android-sdk-license-.+'
   #   - '.+'
@@ -82,8 +87,10 @@ before_install:
 
 before_script:
 # Create and start the emulator
-  - sdkmanager "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
-  - echo no | avdmanager -v create avd -f -n test -k "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
+  # - sdkmanager "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
+  # - echo no | avdmanager -v create avd -f -n test -k "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
+  - echo no | android create avd --force -n test -t $API_LEVEL --abi $ANDROID_ABI
+  # - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
 # Turn off animations
