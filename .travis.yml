@@ -57,6 +57,7 @@ android:
 before_install:
   - echo $EMULATOR_API_LEVEL
   - echo $ANDROID_ABI
+  - echo $ANDROID_HOME
   - yes | sdkmanager "platforms;android-27"
   - yes | sdkmanager "platforms;android-28"
   - yes | sdkmanager "platforms;android-26"
@@ -70,8 +71,6 @@ before_script:
   # - echo y | android list sdk
   - echo $ANDROID_EMULATOR_IMAGE
   - echo no | avdmanager -v create avd -f -n test -k "$ANDROID_EMULATOR_IMAGE"
-  # - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
-  # - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
   - emulator -avd test -no-window &
   # - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
