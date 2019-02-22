@@ -71,7 +71,7 @@ before_script:
   # - echo y | android list sdk
   - echo $ANDROID_EMULATOR_IMAGE
   - echo no | avdmanager -v create avd -f -n test -k "$ANDROID_EMULATOR_IMAGE"
-  - emulator -avd test -no-window &
+  - $ANDROID_HOME/tools/emulator -avd test -no-window &
   # - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
 # Turn off animations
