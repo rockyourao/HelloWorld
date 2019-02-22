@@ -25,11 +25,11 @@ env:
 matrix:
   include:
     - name: "Android 25 google"
-      env: EMULATOR_API_LEVEL=android-25  ANDROID_EMULATOR_IMAGE="system-images;android-25;google_apis;armeabi-v7a"
+      env: EMULATOR_API_LEVEL=android-25 IMAGE=sys-img-armeabi-v7a-google_apis-25 ANDROID_EMULATOR_IMAGE="system-images;android-25;google_apis;armeabi-v7a"
     - name: "Android 24 google"
-      env: EMULATOR_API_LEVEL=android-24  ANDROID_EMULATOR_IMAGE="system-images;android-24;google_apis;armeabi-v7a"
+      env: EMULATOR_API_LEVEL=android-24 IMAGE=sys-img-armeabi-v7a-google_apis-24 ANDROID_EMULATOR_IMAGE="system-images;android-24;google_apis;armeabi-v7a"
     - name: "Android 23 google"
-      env: EMULATOR_API_LEVEL=android-23  ANDROID_EMULATOR_IMAGE="system-images;android-23;google_apis;armeabi-v7a"
+      env: EMULATOR_API_LEVEL=android-23 IMAGE=sys-img-armeabi-v7a-google_apis-23 ANDROID_EMULATOR_IMAGE="system-images;android-23;google_apis;armeabi-v7a"
 
 android:
   components:
@@ -47,7 +47,7 @@ android:
       # - extra-android-m2repository
       # - extra-google-google_play_services
   # Specify the needed emulator
-      - $ANDROID_EMULATOR_IMAGE
+      - $IMAGE
       # - "system-images;"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # licenses:
   #   - 'android-sdk-license-.+'
@@ -67,7 +67,7 @@ before_script:
 # Create and start the emulator
   # - android list targets
   # - echo y | android list sdk
-  # - sdkmanager "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
+  - sdkmanager $ANDROID_EMULATOR_IMAGE
   - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
   # - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
   # - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
