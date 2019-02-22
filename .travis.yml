@@ -30,6 +30,8 @@ matrix:
       env: EMULATOR_API_LEVEL=android-24 IMAGE=sys-img-armeabi-v7a-google_apis-24 ANDROID_EMULATOR_IMAGE="system-images;android-24;google_apis;armeabi-v7a"
     - name: "Android 23 google"
       env: EMULATOR_API_LEVEL=android-23 IMAGE=sys-img-armeabi-v7a-google_apis-23 ANDROID_EMULATOR_IMAGE="system-images;android-23;google_apis;armeabi-v7a"
+    - name: "Android 25 v8a google"
+      env: EMULATOR_API_LEVEL=android-25 IMAGE=sys-img-arm64-v8a-google_apis-25 ANDROID_EMULATOR_IMAGE="system-images;android-25;google_apis;arm64-v8a"
 
 android:
   components:
@@ -55,6 +57,7 @@ android:
 
 # Emulator Management: Create, Start and Wait
 before_install:
+  - touch ~/.android/repositories.cfg
   - echo $EMULATOR_API_LEVEL
   - echo $ANDROID_ABI
   - echo $ANDROID_HOME
@@ -65,13 +68,12 @@ before_install:
   - sdkmanager --list || true
 
 before_script:
-  - touch ~/.android/repositories.cfg
 # Create and start the emulator
   # - android list targets
   # - echo y | android list sdk
   - echo $ANDROID_EMULATOR_IMAGE
   - echo no | avdmanager -v create avd -f -n test -k "$ANDROID_EMULATOR_IMAGE"
-  - $ANDROID_HOME/tools/emulator -avd test -no-window &
+  - $ANDROID_HOME/tools/emulator -avd test -no-audio -no-window &
   # - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
 # Turn off animations
