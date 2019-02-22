@@ -25,11 +25,11 @@ env:
 matrix:
   include:
     - name: "Android 25 google"
-      env: EMULATOR_API_LEVEL=android-25  ANDROID_EMULATOR_IMAGE=system-images;android-25;google_apis;armeabi-v7a
+      env: EMULATOR_API_LEVEL=android-25  ANDROID_EMULATOR_IMAGE="system-images;android-25;google_apis;armeabi-v7a"
     - name: "Android 24 google"
-      env: EMULATOR_API_LEVEL=android-24  ANDROID_EMULATOR_IMAGE=system-images;android-24;google_apis;armeabi-v7a
+      env: EMULATOR_API_LEVEL=android-24  ANDROID_EMULATOR_IMAGE="system-images;android-24;google_apis;armeabi-v7a"
     - name: "Android 23 google"
-      env: EMULATOR_API_LEVEL=android-23  ANDROID_EMULATOR_IMAGE=system-images;android-23;google_apis;armeabi-v7a
+      env: EMULATOR_API_LEVEL=android-23  ANDROID_EMULATOR_IMAGE="system-images;android-23;google_apis;armeabi-v7a"
 
 android:
   components:
@@ -47,8 +47,8 @@ android:
       # - extra-android-m2repository
       # - extra-google-google_play_services
   # Specify the needed emulator
-      - $ANDROID_EMULATOR_IMAGE
-      # - "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
+      # - $ANDROID_EMULATOR_IMAGE
+      - "system-images;"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # licenses:
   #   - 'android-sdk-license-.+'
   #   - '.+'
