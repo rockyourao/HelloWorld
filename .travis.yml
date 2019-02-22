@@ -114,5 +114,5 @@ script:
   # - adb shell logcat -v time chromium:* *:s > logcat.log &
   - adb shell logcat -v time &
   - adb shell am start org.elastos.trinity.runtime/.MainActivity
-  - sleep 15
+  - sleep 30
 
