@@ -65,8 +65,8 @@ before_install:
 
 before_script:
 # Create and start the emulator
-  - android list targets
-  - echo y | android list sdk
+  # - android list targets
+  # - echo y | android list sdk
   # - sdkmanager "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
   # - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
