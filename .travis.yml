@@ -25,13 +25,13 @@ env:
 matrix:
   include:
     - name: "Android 24"
-      env: EMULATOR_API_LEVEL=android-24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
+      env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
     - name: "Android 23"
-      env: EMULATOR_API_LEVEL=android-23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
+      env: EMULATOR_API_LEVEL=23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
     - name: "Android 22"
-      env: EMULATOR_API_LEVEL=android-22  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-22
+      env: EMULATOR_API_LEVEL=22  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-22
     - name: "Android 25"
-      env: EMULATOR_API_LEVEL=android-25  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-25
+      env: EMULATOR_API_LEVEL=25  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-25
     # - name: "Android 25 google"
     #   env: EMULATOR_API_LEVEL=android-25  ANDROID_EMULATOR_IMAGE=system-images;android-25;google_apis;armeabi-v7a
     # - name: "Android 24 google"
@@ -58,7 +58,6 @@ android:
       # - extra-google-google_play_services
   # Specify the needed emulator
       - $ANDROID_EMULATOR_IMAGE
-      - $EMULATOR_API_LEVEL
       # - "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # licenses:
   #   - 'android-sdk-license-.+'
@@ -91,9 +90,10 @@ before_install:
 before_script:
 # Create and start the emulator
   - android list targets
+  - echo y | android list sdk
   # - sdkmanager "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # - echo no | avdmanager -v create avd -f -n test -k "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
-  - echo no | android create avd --force -n test -t $EMULATOR_API_LEVEL --abi $ANDROID_ABI
+  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
   # - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
