@@ -69,7 +69,7 @@ before_script:
   # - android list targets
   # - echo y | android list sdk
   - echo $ANDROID_EMULATOR_IMAGE
-  - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
+  - echo no | avdmanager -v create avd -f -n test -k "$ANDROID_EMULATOR_IMAGE"
   # - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
   # - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
   - emulator -avd test -no-window &
