@@ -47,8 +47,8 @@ android:
       # - extra-android-m2repository
       # - extra-google-google_play_services
   # Specify the needed emulator
-      # - $ANDROID_EMULATOR_IMAGE
-      - "system-images;"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
+      - $ANDROID_EMULATOR_IMAGE
+      # - "system-images;"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # licenses:
   #   - 'android-sdk-license-.+'
   #   - '.+'
