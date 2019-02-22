@@ -37,9 +37,9 @@ matrix:
     - name: "Android 24 google"
       env: EMULATOR_API_LEVEL=android-25  ANDROID_EMULATOR_IMAGE=system-images;android-24;google_apis;armeabi-v7a
 
-allow_failures: # these stall often or have some other flaky problems
-  - env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
-  - env: EMULATOR_API_LEVEL=23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
+# allow_failures: # these stall often or have some other flaky problems
+#   - env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
+#   - env: EMULATOR_API_LEVEL=23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
 
 android:
   components:
@@ -65,7 +65,7 @@ android:
 
 # Emulator Management: Create, Start and Wait
 before_install:
-  - echo $ANDROID_TARGET
+  - echo $EMULATOR_API_LEVEL
   - echo $ANDROID_ABI
 
 # install:
@@ -87,6 +87,7 @@ before_install:
 
 before_script:
 # Create and start the emulator
+  - android list targets
   # - sdkmanager "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # - echo no | avdmanager -v create avd -f -n test -k "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   - echo no | android create avd --force -n test -t $EMULATOR_API_LEVEL --abi $ANDROID_ABI
