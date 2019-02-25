@@ -68,6 +68,7 @@ before_script:
 # Create and start the emulator
   # - android list targets
   # - echo y | android list sdk
+  - export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
   - echo $ANDROID_EMULATOR_IMAGE
   - echo no | avdmanager -v create avd -f -n test -k "$ANDROID_EMULATOR_IMAGE"
   - $ANDROID_HOME/tools/emulator -avd test -no-audio -no-window &
