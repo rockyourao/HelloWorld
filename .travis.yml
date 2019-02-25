@@ -26,12 +26,12 @@ matrix:
   include:
     - name: "Android 24"
       env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
-    - name: "Android 23"
-      env: EMULATOR_API_LEVEL=23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
+   # - name: "Android 23"
+   #   env: EMULATOR_API_LEVEL=23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
     - name: "Android 22"
       env: EMULATOR_API_LEVEL=22  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-22
-    - name: "Android 25"
-      env: EMULATOR_API_LEVEL=25  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-25
+   # - name: "Android 25"
+   #   env: EMULATOR_API_LEVEL=25  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-25
     # - name: "Android 25 google"
     #   env: EMULATOR_API_LEVEL=android-25  ANDROID_EMULATOR_IMAGE=system-images;android-25;google_apis;armeabi-v7a
     # - name: "Android 24 google"
