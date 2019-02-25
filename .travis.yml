@@ -24,8 +24,8 @@ env:
 
 matrix:
   include:
-    - name: "Android 24"
-      env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
+   # - name: "Android 24"
+   #   env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
    # - name: "Android 23"
    #   env: EMULATOR_API_LEVEL=23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
     - name: "Android 22"
@@ -108,6 +108,7 @@ before_script:
   # - adb shell input keyevent 1 &
 
 script:
+  - sleep 5
   - ls -l
   - adb shell logcat -c
   # - adb shell logcat -v time chromium:* *:s > logcat.log &
