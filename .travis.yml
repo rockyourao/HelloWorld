@@ -44,16 +44,16 @@ android:
       - android-$ANDROID_API_LEVEL # get the android sdk version to build the project
       - $EMULATOR_API_LEVEL # get the android sdk version for the emulator
   # Get the latest version of additional components
-      # - extra-android-support
-      # - extra-google-m2repository
-      # - extra-android-m2repository
-      # - extra-google-google_play_services
+      - extra-android-support
+      - extra-google-m2repository
+      - extra-android-m2repository
+      - extra-google-google_play_services
   # Specify the needed emulator
       - $IMAGE
       # - "system-images;"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
-  # licenses:
-  #   - 'android-sdk-license-.+'
-  #   - '.+'
+  licenses:
+    - 'android-sdk-license-.+'
+    - '.+'
 
 # Emulator Management: Create, Start and Wait
 before_install:
@@ -87,11 +87,11 @@ before_script:
 script:
   - ls -l
   - adb devices
-  - adb shell ps -e
-  - adb install -t app-debug.apk
+  - adb shell ps
   - adb shell logcat -c
   # - adb shell logcat -v time chromium:* *:s > logcat.log &
   - adb shell logcat -v time &
+  - adb install -t app-debug.apk
   - adb shell am start org.elastos.trinity.runtime/.MainActivity
   - sleep 30
 
