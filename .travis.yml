@@ -85,6 +85,7 @@ before_script:
   # - adb shell input keyevent 1 &
 
 script:
+  - sleep5
   - ls -l
   - adb devices
   - adb shell logcat -c
