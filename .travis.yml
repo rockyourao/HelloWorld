@@ -87,7 +87,6 @@ before_script:
 script:
   - ls -l
   - adb devices
-  - adb shell ps
   - adb shell logcat -c
   # - adb shell logcat -v time chromium:* *:s > logcat.log &
   - adb shell logcat -v time &
