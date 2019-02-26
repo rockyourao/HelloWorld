@@ -109,12 +109,12 @@ cache:
 
 matrix:
   include:
-   - env: EMULATOR_API_LEVEL=22  ANDROID_ABI="default;arm64-v8a"
    - env: EMULATOR_API_LEVEL=22  ANDROID_ABI="default;armeabi-v7a"
-   - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="default;arm64-v8a"
+   - env: EMULATOR_API_LEVEL=23  ANDROID_ABI="default;armeabi-v7a"
    - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="default;armeabi-v7a"
    - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="google_apis;arm64-v8a"
    - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="google_apis;armeabi-v7a"
+   - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="default;arm64-v8a"
    - env: EMULATOR_API_LEVEL=25  ANDROID_ABI="google_apis;arm64-v8a"
    - env: EMULATOR_API_LEVEL=25  ANDROID_ABI="google_apis;armeabi-v7a"
 
@@ -146,6 +146,7 @@ before_install:
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader &
 
 script:
+  - android-wait-for-emulator
   - sleep 5
   - adb shell logcat -c
   - adb shell logcat -v time &
