@@ -22,14 +22,14 @@ env:
     - ADB_INSTALL_TIMEOUT=20 # wait up to 20 minutes for adb to connect to emulator (2 minutes by default)
     - ANDROID_ABI=armeabi-v7a
 
-matrix:
-  include:
+# matrix:
+#   include:
    # - name: "Android 24"
    #   env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
    # - name: "Android 23"
    #   env: EMULATOR_API_LEVEL=23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
-    - name: "Android 22"
-      env: EMULATOR_API_LEVEL=22  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-22
+    # - name: "Android 22"
+    #   env: EMULATOR_API_LEVEL=22  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-22
    # - name: "Android 25"
    #   env: EMULATOR_API_LEVEL=25  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-25
     # - name: "Android 25 google"
@@ -64,11 +64,11 @@ android:
   #   - '.+'
 
 # Emulator Management: Create, Start and Wait
-before_install:
-  - echo $EMULATOR_API_LEVEL
-  - echo $ANDROID_ABI
-  - yes | sdkmanager "platforms;android-27"
-  - yes | sdkmanager "platforms;android-28"
+# before_install:
+#   - echo $EMULATOR_API_LEVEL
+#   - echo $ANDROID_ABI
+#   - yes | sdkmanager "platforms;android-27"
+#   - yes | sdkmanager "platforms;android-28"
   - yes | sdkmanager "platforms;android-26"
 #  - yes | sdkmanager --update
 # install:
@@ -86,19 +86,19 @@ before_install:
 #   - echo yes | sdkmanager --update
 #   - echo yes | sdkmanager --licenses
 # # Check components status
-  - sdkmanager --list || true
+  # - sdkmanager --list || true
 
-before_script:
+# before_script:
 # Create and start the emulator
   # - android list targets
   # - echo y | android list sdk
   # - sdkmanager "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # - echo no | avdmanager -v create avd -f -n test -k "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
-  - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
+  # - echo no | android create avd --force -n test -t android-$EMULATOR_API_LEVEL --abi $ANDROID_ABI
   # - echo no | avdmanager -v create avd -f -n test -k $ANDROID_EMULATOR_IMAGE
-  - emulator -avd test -no-window &
+  # - emulator -avd test -no-window &
   # - emulator -avd test -no-audio -no-window &
-  - android-wait-for-emulator
+  # - android-wait-for-emulator
 # Turn off animations
   # - adb shell settings put global window_animation_scale 0 &
   # - adb shell settings put global transition_animation_scale 0 &
@@ -107,13 +107,50 @@ before_script:
   # - adb shell input keyevent 82 &
   # - adb shell input keyevent 1 &
 
+matrix:
+  include:
+   - env: EMULATOR_API_LEVEL=22  ANDROID_ABI="default;arm64-v8a"
+   - env: EMULATOR_API_LEVEL=22  ANDROID_ABI="default;armeabi-v7a"
+   - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="default;arm64-v8a"
+   - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="default;armeabi-v7a"
+   - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="google_apis;arm64-v8a"
+   - env: EMULATOR_API_LEVEL=24  ANDROID_ABI="google_apis;armeabi-v7a"
+   - env: EMULATOR_API_LEVEL=25  ANDROID_ABI="google_apis;arm64-v8a"
+   - env: EMULATOR_API_LEVEL=25  ANDROID_ABI="google_apis;armeabi-v7a"
+
+
+before_install:
+   before_install: &before_install_linux
+    - sudo apt-get install -y --no-install-recommends lib32stdc++6 libstdc++6 > /dev/null
+    # Install the Android SDK Dependency.
+    - export ANDROID_HOME=/opt/android-sdk-linux
+    - cd /opt
+    - wget -q https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip -O android-sdk-tools.zip
+    - unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}
+    - rm android-sdk-tools.zip
+    - cd -
+    - PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
+    # Silence warning.
+    - mkdir -p ~/.android
+    - touch ~/.android/repositories.cfg
+    # Accept licenses before installing components, no need to echo y for each component
+    - yes | sdkmanager --licenses
+    # Platform tools
+    - sdkmanager "emulator" "tools" "platform-tools" > /dev/null
+    - sdkmanager --list | head -15
+    # install older packages (for emulator)
+    - sdkmanager "build-tools;25.0.2" "platforms;android-25" > /dev/null
+    # Create and start emulator.
+    - sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI" > /dev/null
+    - sdkmanager --list | head -15
+    - echo no | avdmanager create avd --force -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
+    - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -gpu swiftshader &
+
 script:
   - sleep 5
-  - ls -l
   - adb shell logcat -c
-  # - adb shell logcat -v time chromium:* *:s > logcat.log &
   - adb shell logcat -v time &
   - adb install -t app-debug.apk
   - adb shell am start org.elastos.trinity.runtime/.MainActivity
-  - sleep 30
+  - sleep 20
 
