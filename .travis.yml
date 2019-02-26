@@ -15,12 +15,12 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
-env:
-  global:
-    - ANDROID_API_LEVEL=27
-    - ANDROID_BUILD_TOOLS_VERSION=27.0.3
-    - ADB_INSTALL_TIMEOUT=20 # wait up to 20 minutes for adb to connect to emulator (2 minutes by default)
-    - ANDROID_ABI=armeabi-v7a
+# env:
+#   global:
+#     - ANDROID_API_LEVEL=27
+#     - ANDROID_BUILD_TOOLS_VERSION=27.0.3
+#     - ADB_INSTALL_TIMEOUT=20 # wait up to 20 minutes for adb to connect to emulator (2 minutes by default)
+#     - ANDROID_ABI=armeabi-v7a
 
 # matrix:
 #   include:
@@ -41,23 +41,23 @@ env:
 #   - env: EMULATOR_API_LEVEL=24  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-24
 #   - env: EMULATOR_API_LEVEL=23  ANDROID_EMULATOR_IMAGE=sys-img-armeabi-v7a-android-23
 
-android:
-  components:
-  # Base components
-      # - tools # to get the new `repository-11.xml`
-      - tools # https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
-      - platform-tools
-      - build-tools-$ANDROID_BUILD_TOOLS_VERSION # get the build tools version to build the project
-  # used sdk versions
-      - android-$ANDROID_API_LEVEL # get the android sdk version to build the project
-      - android-$EMULATOR_API_LEVEL # get the android sdk version for the emulator
+# android:
+#   components:
+#   # Base components
+#       # - tools # to get the new `repository-11.xml`
+#       - tools # https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
+#       - platform-tools
+#       - build-tools-$ANDROID_BUILD_TOOLS_VERSION # get the build tools version to build the project
+  # # used sdk versions
+  #     - android-$ANDROID_API_LEVEL # get the android sdk version to build the project
+  #     - android-$EMULATOR_API_LEVEL # get the android sdk version for the emulator
   # Get the latest version of additional components
       # - extra-android-support
       # - extra-google-m2repository
       # - extra-android-m2repository
       # - extra-google-google_play_services
   # Specify the needed emulator
-      - $ANDROID_EMULATOR_IMAGE
+      # - $ANDROID_EMULATOR_IMAGE
       # - "system-images;android-"$EMULATOR_API_LEVEL";google_apis;armeabi-v7a"
   # licenses:
   #   - 'android-sdk-license-.+'
@@ -69,7 +69,7 @@ android:
 #   - echo $ANDROID_ABI
 #   - yes | sdkmanager "platforms;android-27"
 #   - yes | sdkmanager "platforms;android-28"
-  - yes | sdkmanager "platforms;android-26"
+  # - yes | sdkmanager "platforms;android-26"
 #  - yes | sdkmanager --update
 # install:
 #   - sdkmanager --list || true # List all available targets, device definitions and AVDs.
