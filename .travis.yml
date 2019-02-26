@@ -29,12 +29,12 @@ jobs:
 
     - <<: *integration-test-staging
       os: linux
-      env: USE_<<*
-      script: echo "built_redux_android Done"
+      env: USE
+      script: echo "USE Done"
 
-      os: linux
+    - os: linux
       env: normal
-      script: echo "built_redux_android Done"
+      script: echo "normal Done"
 
     - stage: Ready to deploy
       os: osx
