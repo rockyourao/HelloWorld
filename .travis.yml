@@ -128,7 +128,7 @@ before_install:
   - unzip -q android-sdk-tools.zip -d ${ANDROID_HOME}
   - rm android-sdk-tools.zip
   - cd -
-  - PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools
+  - PATH=${ANDROID_HOME}/tools:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/platform-tools:${PATH}
   # Silence warning.
   - mkdir -p ~/.android
   - touch ~/.android/repositories.cfg
