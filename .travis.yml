@@ -24,9 +24,9 @@ after_success:
   - echo "after_success"
   - export
   - if [[ "$tag" != "internal-test" ]]; then
-    echo "do not deploy";
-    echo $tag;
-  fi
+      echo "do not deploy";
+      echo $tag;
+    fi
 
 
 deploy:
