@@ -11,17 +11,22 @@ matrix:
       env: BUILD_ENV=darwin_x64 RUN_TEST=ON
       if: BUILD_VER IS present
 
-    - sudo: required
-      env: BUILD_TYPE=Release BUILD_ENV=linux_x64
+    # - sudo: required
+    #   env: BUILD_TYPE=Release BUILD_ENV=linux_x64
 
-    - sudo: required
-      env: BUILD_TYPE=Release RUN_TEST=ON NO_DEPLOY=no
+    # - sudo: required
+    #   env: BUILD_TYPE=Release RUN_TEST=ON NO_DEPLOY=no
 
 script:
   - echo "script"
 
 after_success:
   - echo "after_success"
+  - export
+  - if [[ "$tag" != "internal-test" ]]; then
+    echo "do not deploy";
+    echo $tag;
+  fi
 
 
 deploy:
