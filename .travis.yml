@@ -33,7 +33,7 @@ deploy:
   on:
     tags: true
     # condition: ($NO_DEPLOY = "") AND (tag =~ /^(internal-test)/)
-    condition: tag =~ /^internal-test/
+    condition: tag =~ /^internal-test$/
     # condition: tag =~ /^(internal-test)/
 
 # notifications:
