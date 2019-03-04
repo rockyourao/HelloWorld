@@ -4,32 +4,6 @@ stages:
   - name: after_success
     if: env(RUN_TEST) IS present
 
-before_install:
-  - export BUILD_TYPE=Release
-  - export TEST=OK
-  - echo  "BUILD_TYPE" $BUILD_TYPE;
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo apt-get install ruby-dev;
-      ulimit -c unlimited;
-      ulimit -c;
-    else
-      ulimit -c unlimited;
-      ulimit -c;
-      sudo sysctl kern.corefile=/cores/core;
-      easy_install six;
-    fi
-
-before_script:
-  - echo "script ***************"
-  - pwd
-  - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk  -F"[:]" '{ print $2}'`
-  - echo $HOST_IP
-  - x=1
-  - while [[ $x -le 5 ]]; do
-      echo "Welcome $x times";
-      x=$(( $x + 1 ));
-    done
-
 matrix:
   include:
     - os: osx
@@ -44,25 +18,10 @@ matrix:
       env: BUILD_TYPE=Release RUN_TEST=ON
 
 script:
-  - gcc main.c
-  - ls -l
-  #- if [[ -f core* ]]; then
-  - if [[ "$RUN_TEST" != "" ]]; then
-      pwd;
-      ./a.out;
-    fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo apt-get install gdb;
-      echo "crash";
-      echo bt | gdb ./a.out core;
-    else
-      echo bt | lldb -c /cores/core;
-    fi
-  - echo bt | gdb ./a.out core
+  - echo "script"
 
 after_success:
   - echo "after_success"
-  - ./a.out
 
 
 deploy:
