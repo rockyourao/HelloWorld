@@ -37,7 +37,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    condition: $NO_DEPLOY = "" && $TRAVIS_TAG =~ /^internal-test/
+    condition: $NO_DEPLOY = "" && $TRAVIS_TAG =~ ^internal-test
     # condition: tag =~ /^internal-test$/
     # condition: tag =~ /^(internal-test)/
 
