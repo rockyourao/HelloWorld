@@ -33,11 +33,11 @@ deploy:
   provider: releases
   api_key: $GIT_TOKEN
   file_glob: true
-  file: $BUILD_ENV*.tar.gz
+  file: main.c
   skip_cleanup: true
   on:
     tags: true
-    condition: $NO_DEPLOY = "" && $TRAVIS_TAG =~ /^internal-test$/
+    condition: $NO_DEPLOY = "" && $TRAVIS_TAG =~ /^internal-test/
     # condition: tag =~ /^internal-test$/
     # condition: tag =~ /^(internal-test)/
 
