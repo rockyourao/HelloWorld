@@ -31,7 +31,7 @@ deploy:
   file: $BUILD_ENV*.tar.gz
   skip_cleanup: true
   on:
-    tags: true
+    # tags: true
     condition: $NO_DEPLOY = "" && tag = "internal-test"
     # condition: tag =~ /^internal-test$/
     # condition: tag =~ /^(internal-test)/
