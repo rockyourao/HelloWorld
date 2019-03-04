@@ -39,10 +39,10 @@ matrix:
 
     - sudo: required
       env: BUILD_TYPE=Release BUILD_ENV=linux_x64
-      
+
     - sudo: required
       env: BUILD_TYPE=Release RUN_TEST=ON
-      
+
     - os: windows
 
 script:
@@ -66,7 +66,7 @@ after_success:
   - echo "after_success"
   - ./a.out
 
-  
+
 deploy:
   provider: releases
   api_key: $GIT_TOKEN
@@ -75,6 +75,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+    condition: $NO_DEPLOY = "" && tag =~ /^(internal-test)/
 
 # notifications:
 #  email:
