@@ -19,6 +19,7 @@ before_install:
       easy_install six;
     fi
   - yes | sdkmanager --update
+  - yes | sdkmanager "ndk-bundle"
 
 before_script:
   - echo "script ***************"
@@ -52,6 +53,7 @@ matrix:
         components:
           - tools
           - platform-tools
+          - tools
           - build-tools-23.0.2
           - android-21
       env: BUILD_ENV=android_armv7a ANDROID_ABI=armeabi-v7a BUILD_TYPE=Debug
