@@ -61,6 +61,7 @@ matrix:
 
 script:
   - export
+  - ls -l $ANDROID_HOME
   - gcc main.c
   - ls -l
   #- if [[ -f core* ]]; then
@@ -74,6 +75,7 @@ script:
       echo bt | gdb ./a.out core;
     else
       echo bt | lldb -c /cores/core;
+    fi
   - echo bt | gdb ./a.out core
   - return 1
 
