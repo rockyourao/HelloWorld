@@ -18,6 +18,7 @@ before_install:
       sudo sysctl kern.corefile=/cores/core;
       easy_install six;
     fi
+  - yes | sdkmanager --update
 
 before_script:
   - echo "script ***************"
@@ -39,13 +40,25 @@ matrix:
 
     - sudo: required
       env: BUILD_TYPE=Release BUILD_ENV=linux_x64
-      
+
     - sudo: required
       env: BUILD_TYPE=Release RUN_TEST=ON
-      
+
     - os: windows
 
+    - language: android
+      sudo: true
+      android:
+        components:
+          - tools
+          - platform-tools
+          - build-tools-23.0.2
+          - android-21
+      env: BUILD_ENV=android_armv7a ANDROID_ABI=armeabi-v7a BUILD_TYPE=Debug
+
+
 script:
+  - export
   - gcc main.c
   - ls -l
   #- if [[ -f core* ]]; then
@@ -66,15 +79,15 @@ after_success:
   - echo "after_success"
   - ./a.out
 
-  
-deploy:
-  provider: releases
-  api_key: $GIT_TOKEN
-  file_glob: true
-  file: $BUILD_ENV*.tar.gz
-  skip_cleanup: true
-  on:
-    tags: true
+
+# deploy:
+#   provider: releases
+#   api_key: $GIT_TOKEN
+#   file_glob: true
+#   file: $BUILD_ENV*.tar.gz
+#   skip_cleanup: true
+#   on:
+#     tags: true
 
 # notifications:
 #  email:
