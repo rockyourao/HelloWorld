@@ -19,8 +19,8 @@ before_install:
       easy_install six;
     fi
   - yes | sdkmanager --update >/dev/null
-  - ls -l $ANDROID_HOME
-  - ls -l $ANDROID_HOME/ndk-bundle
+  # - ls -l $ANDROID_HOME
+  # - ls -l $ANDROID_HOME/ndk-bundle
   - yes | sdkmanager "ndk-bundle" >/dev/null
 
 before_script:
