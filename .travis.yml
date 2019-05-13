@@ -34,7 +34,6 @@ matrix:
   include:
     - os: linux
       dist: xenial
-      language: c  android
       android:
         components:
           - tools
