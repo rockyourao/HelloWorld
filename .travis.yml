@@ -40,14 +40,16 @@ matrix:
     - os: linux
       dist: xenial
       sudo: required
-      env: BUILD_ENV=darwin_x64 RUN_TEST=ON
+      env: BUILD_ENV=linux RUN_TEST=ON
       if: BUILD_VER IS present
 
-    - sudo: required
+    - os: linux
+      sudo: required
       dist: trusty
       env: BUILD_TYPE=Release BUILD_ENV=linux_x64
       
-    - sudo: required
+    - os: linux
+      sudo: required
       env: BUILD_TYPE=Release RUN_TEST=ON
       
     - os: windows
