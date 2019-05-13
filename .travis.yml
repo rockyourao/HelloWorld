@@ -38,7 +38,14 @@ matrix:
       if: BUILD_VER IS present
 
     - os: linux
+      language: android c
       dist: xenial
+      android:
+        components:
+          - tools
+          - platform-tools
+          - build-tools-28.0.3
+          - android-27
       sudo: required
       env: BUILD_ENV=linux RUN_TEST=ON
       if: BUILD_VER IS present
