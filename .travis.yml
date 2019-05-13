@@ -32,14 +32,9 @@ before_script:
 
 matrix:
   include:
-    - os: osx
-      sudo: required
-      env: BUILD_ENV=darwin_x64 RUN_TEST=ON
-      if: BUILD_VER IS present
-
     - os: linux
       dist: xenial
-      language: android c
+      language: c  android
       android:
         components:
           - tools
@@ -51,15 +46,18 @@ matrix:
       if: BUILD_VER IS present
 
     - os: linux
+      dist: xenial
+      language: android
+      android:
+        components:
+          - tools
+          - platform-tools
+          - build-tools-28.0.3
+          - android-27
       sudo: required
       dist: trusty
       env: BUILD_TYPE=Release BUILD_ENV=linux_x64
-      
-    - os: linux
-      sudo: required
-      env: BUILD_TYPE=Release RUN_TEST=ON
-      
-    - os: windows
+     
 
 script:
   - gcc main.c
