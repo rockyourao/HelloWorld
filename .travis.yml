@@ -38,8 +38,8 @@ matrix:
       if: BUILD_VER IS present
 
     - os: linux
-      language: android c
       dist: xenial
+      language: android c
       android:
         components:
           - tools
