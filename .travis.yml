@@ -5,80 +5,31 @@ stages:
     if: env(RUN_TEST) IS present
 
 before_install:
-  - export BUILD_TYPE=Release
-  - export TEST=OK
-  - echo  "BUILD_TYPE" $BUILD_TYPE;
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo apt-get install ruby-dev;
-      ulimit -c unlimited;
-      ulimit -c;
-    else
-      ulimit -c unlimited;
-      ulimit -c;
-      sudo sysctl kern.corefile=/cores/core;
-      easy_install six;
-    fi
+  - echo "before_install ***************"
 
 before_script:
-  - echo "script ***************"
-  - pwd
-  - export HOST_IP=`ifconfig eth0 | grep 'inet addr' | awk  -F"[:]" '{ print $2}'`
-  - echo $HOST_IP
-  - x=1
-  - while [[ $x -le 5 ]]; do
-      echo "Welcome $x times";
-      x=$(( $x + 1 ));
-    done
+  - echo "before_script ***************"
 
 matrix:
   include:
     - os: linux
       dist: xenial
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-28.0.3
-          - android-27
-      sudo: required
-      env: BUILD_ENV=linux RUN_TEST=ON
-      if: BUILD_VER IS present
+      before_install:
+        - echo "job 1 before_install ***************"
+      before_script:
+        - echo "job 1 before_script ***************"
 
     - os: linux
       dist: xenial
-      language: android
-      android:
-        components:
-          - tools
-          - platform-tools
-          - build-tools-28.0.3
-          - android-27
-      sudo: required
-      dist: trusty
-      env: BUILD_TYPE=Release BUILD_ENV=linux_x64
-     
+      script:
+        - echo "job 2 script ***************"
+
 
 script:
-  - gcc main.c
-  - ls -l
-  #- if [[ -f core* ]]; then
-  - if [[ "$RUN_TEST" != "" ]]; then
-      pwd;
-      ./a.out;
-    fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      sudo apt-get install gdb;
-      echo "crash";
-      echo bt | gdb ./a.out core;
-    else
-      echo bt | lldb -c /cores/core;
-  - echo bt | gdb ./a.out core
-  - return 1
+  - echo "script ***************"
 
 after_success:
   - echo "after_success"
-  - ./a.out
-
   
 deploy:
   provider: releases
