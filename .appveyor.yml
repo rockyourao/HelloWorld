@@ -3,7 +3,7 @@ image:
   - Visual Studio 2017
 
 platform:
-  - x86
+  # - x86
   - x64
   #- Any CPU
 
@@ -30,7 +30,7 @@ deploy:
   provider: GitHub
   artifact: /.*\.zip/           # upload all NuGet packages to release assets
   auth_token:
-    secure: QZNfFHSeBHg/QSjPRBsKydwqZnwXik9thbRWOJZeBw2PjYPux94SyCwTKL/NH0MB
+    secure: mkCzk5/XVb78Atxs5I4lthSLaGSifr7hv1NiRQpsD45BWQsoY5BAhWUpVQRCASP/
   draft: false
   prerelease: false
   on:
