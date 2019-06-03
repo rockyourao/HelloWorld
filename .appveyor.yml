@@ -8,7 +8,8 @@ platform:
   #- Any CPU
 
 build_script:
-  - cmd: gcc main.c
+  - cmd: echo "build_script"
+  - cmd: 7z a main.zip main.c
 
 for:
 -
@@ -27,7 +28,7 @@ before_deploy:
 
 deploy:
   provider: GitHub
-  artifact: /.*\.out/           # upload all NuGet packages to release assets
+  artifact: /.*\.zip/           # upload all NuGet packages to release assets
   auth_token:
     secure: QZNfFHSeBHg/QSjPRBsKydwqZnwXik9thbRWOJZeBw2PjYPux94SyCwTKL/NH0MB
   draft: false
