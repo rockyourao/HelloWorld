@@ -26,10 +26,12 @@ before_deploy:
   - cmd: echo "before_deploy"
   - cmd: ls
 
+
+artifacts:
+  - path: main.zip
+
 deploy:
   provider: GitHub
-  artifact:
-    - path: main.zip
   auth_token:
     secure: mkCzk5/XVb78Atxs5I4lthSLaGSifr7hv1NiRQpsD45BWQsoY5BAhWUpVQRCASP/
   draft: false
