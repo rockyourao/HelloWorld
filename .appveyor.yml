@@ -22,21 +22,22 @@ for:
   test_script:
     - cmd: echo "test_script"
 
-  # before_deploy:
-  #   - cmd: echo "before_deploy"
-  #   - cmd: ls
+before_deploy:
+  - cmd: echo "before_deploy"
+  - cmd: ls
 
-  # artifacts:
-  #   - path: main.zip
+artifacts:
+  - path: main.zip
 
-  # deploy:
-  #   provider: GitHub
-  #   artifacts:
-  #   auth_token:
-  #     secure: Ydv3jxxAP6HvexomaFRj4cXpoUomi/NfumB/eWeGW2Qt/qA7xLdq+EXeQpdpVfi+
-  #   draft: false
-  #   prerelease: false
-  #   on:
-  #     # branch: master
-  #     APPVEYOR_REPO_TAG: true
+deploy:
+  provider: GitHub
+  artifacts:
+  auth_token:
+    secure: Ydv3jxxAP6HvexomaFRj4cXpoUomi/NfumB/eWeGW2Qt/qA7xLdq+EXeQpdpVfi+
+  draft: false
+  prerelease: false
+  on:
+    # branch: master
+    platform: x64
+    APPVEYOR_REPO_TAG: true
 
