@@ -28,7 +28,7 @@ before_deploy:
 
 deploy:
   provider: GitHub
-  artifact: /.*\.zip/           # upload all NuGet packages to release assets
+  artifact: main.zip
   auth_token:
     secure: mkCzk5/XVb78Atxs5I4lthSLaGSifr7hv1NiRQpsD45BWQsoY5BAhWUpVQRCASP/
   draft: false
