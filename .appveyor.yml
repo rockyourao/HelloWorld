@@ -11,7 +11,7 @@ platform:
 
 build_script:
   - cmd: date
-  - set CURRENT_DATE_TIME=%date:~0,4%-%date:~5,2%-%date:~8,2%
+  - set CURRENT_DATE_TIME=%date:~10,4%-%date:~7,2%-%date:~4,2%
   - cmd: echo ${APPVEYOR_REPO_TAG_NAME}
   - cmd: echo %APPVEYOR_REPO_TAG_NAME%
   - cmd: echo %CURRENT_DATE_TIME%
