@@ -29,7 +29,7 @@ before_deploy:
   - cmd: ls
 
 artifacts:
-  - path: '**\*.7z'
+  - path: '*.7z'
 
 deploy:
   provider: GitHub
