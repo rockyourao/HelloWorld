@@ -10,12 +10,7 @@ platform:
 # set CURRENT_DATE_TIME=%date:~0,4%-%date:~5,2%-%date:~8,2%
 
 build_script:
-  - set CURRENT_DATE_TIME=%date:~10,4%-%date:~7,2%-%date:~4,2%
-  - cmd: echo ${APPVEYOR_REPO_TAG_NAME}
-  - cmd: echo %APPVEYOR_REPO_TAG_NAME%
-  - cmd: echo %CURRENT_DATE_TIME%
   - cmd: echo "build_script"
-  - cmd: 7z a -t7z ${APPVEYOR_REPO_TAG_NAME}-windows-x64-%CURRENT_DATE_TIME%.7z main.c
 
 for:
 -
@@ -31,6 +26,7 @@ for:
 before_deploy:
   - cmd: echo "before_deploy"
   - cmd: ls
+  - cmd: 7z a -t7z %APPVEYOR_REPO_TAG_NAME%-windows-x64-%date:~10,4%%date:~7,2%%date:~4,2%.7z main.c
 
 artifacts:
   - path: main.zip
