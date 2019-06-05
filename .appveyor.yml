@@ -8,8 +8,9 @@ platform:
   #- Any CPU
 
 build_script:
+  - cmd: set
   - cmd: echo "build_script"
-  - cmd: 7z a main.zip main.c
+  - cmd: 7z a -t7z windows-x64-$(date +'%Y%m%d').7z main.c
 
 for:
 -
