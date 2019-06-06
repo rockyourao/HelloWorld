@@ -36,11 +36,11 @@ for:
         }
 
     - ps: |
-        if ($env:APPVEYOR_REPO_TAG -eq "false")
+        if ($APPVEYOR_REPO_TAG -eq "false")
         {
             echo "APPVEYOR_REPO_TAG is false ------";
-            echo $env:APPVEYOR_REPO_TAG_NAME;
             echo $env:packagename;
+            echo "-----";
             echo $APPVEYOR_REPO_TAG_NAME;
             echo $packagename;
             echo %packagename%;
