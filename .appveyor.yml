@@ -24,15 +24,15 @@ for:
     - cmd: echo "test_script"
     - cmd: 7z a -t7z %APPVEYOR_REPO_TAG_NAME%-windows-x64-%date:~10,4%%date:~7,2%%date:~4,2%.7z main.c
     - ps: |
-      if ($APPVEYOR_REPO_TAG)
-      {
-        echo "APPVEYOR_REPO_TAG is true"
-      }
-    - ps: |
-      if ($APPVEYOR_REPO_TAG == false)
-      {
-        echo "APPVEYOR_REPO_TAG is true"
-      }
+        if ($APPVEYOR_REPO_TAG)
+        {
+            echo "APPVEYOR_REPO_TAG is true"
+        }
+    # - ps: |
+    #   if ($APPVEYOR_REPO_TAG == false)
+    #   {
+    #     echo "APPVEYOR_REPO_TAG is true"
+    #   }
 
 before_deploy:
   - cmd: echo "before_deploy"
