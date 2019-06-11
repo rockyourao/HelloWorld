@@ -24,7 +24,7 @@ for:
     - cmd: echo "test_script"
     - cmd: set
     - cmd: set packagename=%APPVEYOR_REPO_TAG_NAME%-windows-x64-%date:~10,4%%date:~7,2%%date:~4,2%.7z
-    # - cmd: 7z a -t7z %APPVEYOR_REPO_TAG_NAME%-windows-x64-%date:~10,4%%date:~7,2%%date:~4,2%.7z main.c
+    - cmd: 7z a -t7z %APPVEYOR_REPO_TAG_NAME%-windows-x64-%date:~10,4%%date:~7,2%%date:~4,2%.7z main.c
     - ps: |
         if ($env:APPVEYOR_REPO_TAG -eq "true")
         {
@@ -58,7 +58,7 @@ before_deploy:
   - cmd: ls
 
 artifacts:
-  - path: '*.7z'
+  - path: %APPVEYOR_BUILD_FOLDER%/'*.7z'
 
 deploy:
   provider: GitHub
@@ -70,5 +70,5 @@ deploy:
   on:
     # branch: master
     platform: x64
-    APPVEYOR_REPO_TAG: true
+    APPVEYOR_REPO_TAG: false
 
