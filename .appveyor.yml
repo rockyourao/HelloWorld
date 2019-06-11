@@ -71,5 +71,5 @@ deploy:
   on:
     # branch: master
     platform: x64
-    APPVEYOR_REPO_TAG: false
+    APPVEYOR_REPO_TAG: true
 
