@@ -58,7 +58,7 @@ before_deploy:
   - cmd: ls
 
 artifacts:
-  - path: %APPVEYOR_BUILD_FOLDER%/'*.7z'
+  - path: '%APPVEYOR_BUILD_FOLDER%/*.7z'
 
 deploy:
   provider: GitHub
