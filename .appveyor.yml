@@ -56,9 +56,10 @@ before_deploy:
   - cmd: echo "before_deploy"
   - set
   - cmd: ls
+  - cmd: cd %APPVEYOR_BUILD_FOLDER%
 
 artifacts:
-  - path: '%APPVEYOR_BUILD_FOLDER%/*.7z'
+  - path: '*.7z'
 
 deploy:
   provider: GitHub
