@@ -3,7 +3,7 @@ image:
   - Visual Studio 2017
 
 platform:
-  - x86
+  #- x86
   - x64
   #- Any CPU
 
@@ -66,7 +66,7 @@ deploy:
   provider: GitHub
   artifacts:
   auth_token:
-    secure: FIL7+HnybSKwWLE2VLc86EmJaqpP4MolbUKXdYt5Inrhks8ZdUMmneO7yHsl45/O
+    secure: 9LoZHUDtMlwyT/aphUaYnly0Su6NteIzQmx4oW1qp5Ogyo1ci3YcgS/k3PR+23qx
   draft: false
   prerelease: false
   on:
